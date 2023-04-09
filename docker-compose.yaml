@@ -5,6 +5,6 @@ services:
     env_file:
       - .env
     volumes:
-      - /static/dist:/app/dist
+      - /static/dist:/app/build
     working_dir: /app
     command: ["yarn", "build"]
