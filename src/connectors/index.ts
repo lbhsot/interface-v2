@@ -15,7 +15,7 @@ import {
   TrustWalletConnector,
 } from './TrustWalletConnector';
 import { MetaMaskConnector } from './MetaMaskConnector';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { PhantomWalletConnector } from './PhantomWalletConnector';
 
 const POLLING_INTERVAL = 12000;
@@ -36,25 +36,13 @@ export const networkInfoMap: NetworkInfoChainMap = {
     rpcUrl: 'https://polygon-rpc.com/',
     scanUrl: 'https://polygonscan.com/',
   },
-  [ChainId.DOGECHAIN]: {
-    rpcUrl: 'https://rpc-sg.dogechain.dog/',
-    scanUrl: 'https://explorer.dogechain.dog/',
+  [ChainId.ZK_ERA]: {
+    rpcUrl: 'https://mainnet.era.zksync.io',
+    scanUrl: 'https://explorer.zksync.io/',
   },
-  [ChainId.MUMBAI]: {
-    rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
-    scanUrl: 'https://mumbai.polygonscan.com/',
-  },
-  [ChainId.DOEGCHAIN_TESTNET]: {
-    rpcUrl: 'https://rpc-testnet.dogechain.dog',
-    scanUrl: 'https://explorer-testnet.dogechain.dog/',
-  },
-  [ChainId.ZKTESTNET]: {
-    rpcUrl: 'https://rpc.public.zkevm-test.net',
-    scanUrl: 'https://testnet-zkevm.polygonscan.com/',
-  },
-  [ChainId.ZKEVM]: {
-    rpcUrl: 'https://zkevm-rpc.com',
-    scanUrl: 'https://zkevm.polygonscan.com/',
+  [ChainId.ZK_ERA_TESTNET]: {
+    rpcUrl: 'https://testnet.era.zksync.dev',
+    scanUrl: 'https://goerli.explorer.zksync.io/',
   },
 };
 
@@ -71,10 +59,8 @@ export const NETWORK_CHAIN_ID: number = parseInt(
 
 export const rpcMap = {
   [ChainId.MATIC]: networkInfoMap[ChainId.MATIC].rpcUrl,
-  [ChainId.MUMBAI]: networkInfoMap[ChainId.MUMBAI].rpcUrl,
-  [ChainId.DOGECHAIN]: networkInfoMap[ChainId.DOGECHAIN].rpcUrl,
-  [ChainId.DOEGCHAIN_TESTNET]: networkInfoMap[ChainId.DOEGCHAIN_TESTNET].rpcUrl,
-  [ChainId.ZKTESTNET]: networkInfoMap[ChainId.ZKTESTNET].rpcUrl,
+  [ChainId.ZK_ERA]: networkInfoMap[ChainId.ZK_ERA].rpcUrl,
+  [ChainId.ZK_ERA_TESTNET]: networkInfoMap[ChainId.ZK_ERA_TESTNET].rpcUrl,
 };
 
 export const network = new NetworkConnector({
@@ -100,11 +86,8 @@ export function getNetworkLibrary(): Web3Provider {
 
 const supportedChainIds: number[] = [
   ChainId.MATIC,
-  ChainId.DOGECHAIN,
-  ChainId.MUMBAI,
-  ChainId.DOEGCHAIN_TESTNET,
-  ChainId.ZKTESTNET,
-  ChainId.ZKEVM,
+  ChainId.ZK_ERA,
+  ChainId.ZK_ERA_TESTNET,
 ];
 
 export const injected = new InjectedConnector({

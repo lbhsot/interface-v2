@@ -1,17 +1,16 @@
 import { ConnectorUpdate } from '@web3-react/types';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 import invariant from 'tiny-invariant';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { Arkane } from '@arkane-network/web3-arkane-provider';
 import { ArkaneConnect, SecretType } from '@arkane-network/arkane-connect';
 import Web3 from 'web3';
 
-type ArkaneSupportedChains = Extract<ChainId, ChainId.MATIC | ChainId.MUMBAI>;
+type ArkaneSupportedChains = Extract<ChainId, ChainId.MATIC>;
 
 const CHAIN_ID_NETWORK_ARGUMENT: {
   readonly [chainId in ArkaneSupportedChains]: string | undefined;
 } = {
-  [ChainId.MUMBAI]: 'mumbai',
   [ChainId.MATIC]: 'matic',
 };
 

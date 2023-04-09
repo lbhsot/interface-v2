@@ -6,15 +6,13 @@ import useIsWindowVisible from 'hooks/useIsWindowVisible';
 import { updateBlockNumber } from './actions';
 import { useEthPrice, useLocalChainId, useMaticPrice } from './hooks';
 import { getEthPrice } from 'utils';
-import { getMaticPrice } from 'utils/v3-graph';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 export default function Updater(): null {
   const { library, chainId } = useActiveWeb3React();
   const { ethereum } = window as any;
   const dispatch = useDispatch();
   const { updateEthPrice } = useEthPrice();
-  const { updateMaticPrice } = useMaticPrice();
   const { updateLocalChainId } = useLocalChainId();
 
   const windowVisible = useIsWindowVisible();
@@ -65,22 +63,6 @@ export default function Updater(): null {
 
   useEffect(() => {
     if (!chainId || state.chainId !== chainId) return;
-    const fetchMaticPrice = async () => {
-      try {
-        const [
-          maticPrice,
-          maticOneDayPrice,
-          maticPriceChange,
-        ] = await getMaticPrice(chainId);
-        updateMaticPrice({
-          price: maticPrice,
-          oneDayPrice: maticOneDayPrice,
-          maticPriceChange,
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
     const fetchETHPrice = async () => {
       try {
         const [price, oneDayPrice, ethPriceChange] = await getEthPrice(chainId);
@@ -89,7 +71,6 @@ export default function Updater(): null {
         console.log(e);
       }
     };
-    fetchMaticPrice();
     fetchETHPrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTime, chainId, state.chainId]);

@@ -32,7 +32,7 @@ import { useTranslation } from 'react-i18next';
 import { getConfig } from 'config/index';
 import useDeviceWidth from 'hooks/useDeviceWidth';
 import { USDC, USDT } from 'constants/v3/addresses';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 const newTransactionsFirst = (a: TransactionDetails, b: TransactionDetails) => {
   return b.addedTime - a.addedTime;
@@ -111,8 +111,6 @@ const Header: React.FC = () => {
 
   const swapCurrencyStr = useMemo(() => {
     if (!chainId) return '';
-    if (chainId === ChainId.ZKTESTNET)
-      return `&currency1=${USDT[chainId].address}`;
     return `&currency1=${USDC[chainId].address}`;
   }, [chainId]);
 

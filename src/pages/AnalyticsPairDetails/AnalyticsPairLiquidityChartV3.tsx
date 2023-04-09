@@ -1,4 +1,4 @@
-import { ChainId, JSBI } from '@uniswap/sdk';
+import { ChainId, JSBI } from 'sdk/uniswap';
 import { CurrencyAmount, Token } from '@uniswap/sdk-core';
 import { Pool, TickMath } from '@uniswap/v3-sdk';
 import { BigNumber } from 'ethers';

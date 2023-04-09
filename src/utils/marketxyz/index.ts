@@ -1,5 +1,5 @@
 import { Comptroller, CToken, MarketSDK } from 'market-sdk';
-import { Token, ChainId } from '@uniswap/sdk';
+import { Token, ChainId } from 'sdk/uniswap';
 import { BN } from 'utils/bigUtils';
 import { USDPricedPoolAsset } from './fetchPoolData';
 import { convertNumbertoBN, getDaysCurrentYear } from 'utils';

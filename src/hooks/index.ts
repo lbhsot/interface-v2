@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
-import { ChainId, Pair } from '@uniswap/sdk';
+import { ChainId, Pair } from 'sdk/uniswap';
 import { isMobile } from 'react-device-detect';
 import { injected, safeApp } from 'connectors';
 import { useDispatch } from 'react-redux';
@@ -18,7 +18,7 @@ import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks';
 import { usePairs } from 'data/Reserves';
 import useParsedQueryString from './useParsedQueryString';
 import { useLocalChainId } from 'state/application/hooks';
-import { GlobalConst } from 'constants/index';
+import { GlobalConst } from '../constants';
 import { useParams } from 'react-router-dom';
 import { getConfig } from 'config';
 

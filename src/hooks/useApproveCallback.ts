@@ -8,7 +8,7 @@ import {
   Fraction,
   Percent,
   ChainId,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 import {
   CurrencyAmount as CurrencyAmountV3,
   Currency,

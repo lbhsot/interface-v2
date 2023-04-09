@@ -4,7 +4,7 @@ import { useActiveWeb3React } from '../index';
 import { fetchPoolData, PoolData } from '../../utils/marketxyz/fetchPoolData';
 import { PoolDirectoryV1 } from 'market-sdk';
 import { useEthPrice } from 'state/application/hooks';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 export const usePoolsData = (
   poolAddresses: string[],

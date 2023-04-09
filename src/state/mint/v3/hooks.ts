@@ -42,7 +42,7 @@ import { GlobalConst } from 'constants/index';
 import { formatUnits, parseUnits } from 'ethers/lib/utils';
 import { useGammaUNIProxyContract } from 'hooks/useContract';
 import { useSingleContractMultipleData } from 'state/multicall/v3/hooks';
-import { ETHER, WETH } from '@uniswap/sdk';
+import { ETHER, WETH } from 'sdk/uniswap';
 import { maxAmountSpend } from 'utils';
 
 export interface IDerivedMintInfo {

@@ -37,7 +37,7 @@ import { ReactComponent as SettingsIcon } from 'assets/images/SettingsIcon.svg';
 import { useAppDispatch } from 'state/hooks';
 import usePoolsRedirect from 'hooks/usePoolsRedirect';
 import { CHAIN_INFO } from 'constants/v3/chains';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { useTranslation } from 'react-i18next';
 import { GlobalConst } from 'constants/index';
 
@@ -139,16 +139,10 @@ export function SupplyLiquidityV3() {
 
       let chainSymbol;
 
-      if (chainId === ChainId.MATIC || chainId === ChainId.MUMBAI) {
+      if (chainId === ChainId.MATIC) {
         chainSymbol = 'MATIC';
       }
-      if (
-        chainId === ChainId.DOGECHAIN ||
-        chainId === ChainId.DOEGCHAIN_TESTNET
-      ) {
-        chainSymbol = 'WDOGE';
-      }
-      if (chainId === ChainId.ZKTESTNET) {
+      if (chainId === ChainId.ZK_ERA || chainId === ChainId.ZK_ERA_TESTNET) {
         chainSymbol = 'ETH';
       }
 

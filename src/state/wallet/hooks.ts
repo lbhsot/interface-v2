@@ -1,4 +1,3 @@
-import { GlobalValue } from 'constants/index';
 import {
   ChainId,
   Currency,
@@ -7,8 +6,7 @@ import {
   JSBI,
   TokenAmount,
   Token,
-} from '@uniswap/sdk';
-import { Currency as V3Currency, Token as V3Token } from '@uniswap/sdk-core';
+} from 'sdk/uniswap';
 import { useMemo } from 'react';
 import ERC20_INTERFACE from 'constants/abis/erc20';
 import { useAllTokens } from 'hooks/Tokens';

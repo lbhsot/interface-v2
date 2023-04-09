@@ -17,7 +17,7 @@ import { AreaChart, ChartType } from 'components';
 import { useTranslation } from 'react-i18next';
 import { getChartDataV3, getChartDataTotal } from 'utils/v3-graph';
 import { useActiveWeb3React, useAnalyticsVersion } from 'hooks';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 dayjs.extend(utc);
 
 const AnalyticsLiquidityChart: React.FC<{

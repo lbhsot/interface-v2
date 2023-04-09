@@ -1,4 +1,4 @@
-import { JSBI, Pair, Percent } from '@uniswap/sdk';
+import { JSBI, Pair, Percent } from 'sdk/uniswap';
 import React, { useState } from 'react';
 import { Box } from '@material-ui/core';
 import { useTotalSupply } from 'data/TotalSupply';

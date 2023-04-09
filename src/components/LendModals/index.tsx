@@ -44,7 +44,7 @@ import { useEthPrice } from 'state/application/hooks';
 import useUSDCPrice from 'utils/useUSDCPrice';
 import { Link } from 'react-router-dom';
 import { useMarket } from 'hooks/marketxyz/useMarket';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { LENDING_LENS } from 'constants/v3/addresses';
 import { formatUnits, parseUnits } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';

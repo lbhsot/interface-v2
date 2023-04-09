@@ -1,15 +1,12 @@
 import { Interface } from '@ethersproject/abi';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import V1_EXCHANGE_ABI from './v1_exchange.json';
 import V1_FACTORY_ABI from './v1_factory.json';
 
 const V1_FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
-  [ChainId.MUMBAI]: '0xD3E51Ef092B2845f10401a0159B2B96e8B6c3D30', //TODO: DO NOT SUPPORT V1 ON MUMBAI
   [ChainId.MATIC]: '0xD3E51Ef092B2845f10401a0159B2B96e8B6c3D30',
-  [ChainId.DOEGCHAIN_TESTNET]: '0xD3E51Ef092B2845f10401a0159B2B96e8B6c3D30',
-  [ChainId.DOGECHAIN]: '0xD3E51Ef092B2845f10401a0159B2B96e8B6c3D30',
-  [ChainId.ZKTESTNET]: '0xD3E51Ef092B2845f10401a0159B2B96e8B6c3D30',
-  [ChainId.ZKEVM]: '0xD3E51Ef092B2845f10401a0159B2B96e8B6c3D30',
+  [ChainId.ZK_ERA]: '',
+  [ChainId.ZK_ERA_TESTNET]: '',
 };
 
 const V1_FACTORY_INTERFACE = new Interface(V1_FACTORY_ABI);

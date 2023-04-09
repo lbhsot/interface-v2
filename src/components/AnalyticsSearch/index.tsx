@@ -11,7 +11,7 @@ import {
 } from 'utils';
 import { GlobalConst } from 'constants/index';
 import { CurrencyLogo, DoubleCurrencyLogo } from 'components';
-import { ChainId, Token } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import { getAddress } from '@ethersproject/address';
 import 'components/styles/SearchWidget.scss';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +26,7 @@ import {
   getAllTokensV3,
 } from 'utils/v3-graph';
 import { useActiveWeb3React } from 'hooks';
-import { getConfig } from '../../config/index';
+import { getConfig } from '../../config';
 import { PAIR_SEARCH_V3, TOKEN_SEARCH_V3 } from 'apollo/queries-v3';
 dayjs.extend(utc);
 

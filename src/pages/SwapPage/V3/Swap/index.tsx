@@ -66,7 +66,7 @@ import { maxAmountSpend } from 'utils/v3/maxAmountSpend';
 import { warningSeverity } from 'utils/v3/prices';
 
 import { Box, Button } from '@material-ui/core';
-import { ChainId, ETHER } from '@uniswap/sdk';
+import { ChainId, ETHER } from 'sdk/uniswap';
 import { AddressInput } from 'components';
 import { WMATIC_EXTENDED } from 'constants/v3/addresses';
 import useParsedQueryString from 'hooks/useParsedQueryString';

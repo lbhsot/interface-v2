@@ -1,8 +1,8 @@
 import React from 'react';
-import { Currency, ETHER, currencyEquals } from '@uniswap/sdk';
-import { NativeCurrency } from '@uniswap/sdk-core';
-import { WrappedTokenInfo } from 'state/lists/v3/wrappedTokenInfo';
-import { TokenInfo } from '@uniswap/token-lists';
+import { Currency } from 'sdk/uniswap';
+// import { NativeCurrency } from '@uniswap/sdk-core';
+// import { WrappedTokenInfo } from 'state/lists/v3/wrappedTokenInfo';
+// import { TokenInfo } from '@uniswap/token-lists';
 import { Box } from '@material-ui/core';
 import { useCurrencyBalance } from 'state/wallet/hooks';
 import { NumericalInput } from 'components';
@@ -12,8 +12,8 @@ import { formatTokenAmount } from 'utils';
 import 'components/styles/CurrencyInput.scss';
 import { useTranslation } from 'react-i18next';
 import CurrencySelect from 'components/CurrencySelect';
-import { default as useUSDCPriceV3 } from 'hooks/v3/useUSDCPrice';
-import { WMATIC_EXTENDED } from 'constants/v3/addresses';
+// import { default as useUSDCPriceV3 } from 'hooks/v3/useUSDCPrice';
+// import { WMATIC_EXTENDED } from 'constants/v3/addresses';
 
 interface CurrencyInputProps {
   title?: string;
@@ -54,21 +54,21 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
     account ?? undefined,
     currency,
   );
-  const usdPriceV2 = Number(useUSDCPrice(currency)?.toSignificant() ?? 0);
-  const currencyV3 =
-    chainId && currency
-      ? currencyEquals(currency, ETHER[chainId])
-        ? ({
-            ...ETHER[chainId],
-            isNative: true,
-            isToken: false,
-            wrapped: WMATIC_EXTENDED[chainId],
-          } as NativeCurrency)
-        : new WrappedTokenInfo(currency as TokenInfo)
-      : undefined;
-  const usdPriceV3Obj = useUSDCPriceV3(currencyV3);
-  const usdPriceV3 = Number(usdPriceV3Obj?.toSignificant() ?? 0);
-  const usdPrice = usdPriceV3 || usdPriceV2;
+  // const currencyV3 =
+  //   chainId && currency
+  //     ? currencyEquals(currency, ETHER[chainId])
+  //       ? ({
+  //           ...ETHER[chainId],
+  //           isNative: true,
+  //           isToken: false,
+  //           wrapped: WMATIC_EXTENDED[chainId],
+  //         } as NativeCurrency)
+  //       : new WrappedTokenInfo(currency as TokenInfo)
+  //     : undefined;
+  // const usdPriceV3Obj = useUSDCPriceV3(currencyV3);
+  // const usdPriceV3 = Number(usdPriceV3Obj?.toSignificant() ?? 0);
+  const usdPrice = Number(useUSDCPrice(currency)?.toSignificant() ?? 0);
+  console.log('usdPrice, currency?.symbol -> ', usdPrice, currency?.symbol);
 
   return (
     <Box

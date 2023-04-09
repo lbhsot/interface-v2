@@ -9,7 +9,7 @@ import { useActiveWeb3React } from 'hooks';
 import { isSupportedNetwork } from 'utils';
 import { useLocalChainId } from 'state/application/hooks';
 import { useTranslation } from 'react-i18next';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 interface NetworkSelectionModalProps {
   open: boolean;
@@ -33,6 +33,7 @@ const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = ({
     (chainId: ChainId) => {
       const config = getConfig(chainId);
       const chainIdHex = chainId.toString(16);
+      console.log(chainId, chainIdHex);
       if (ethereum) {
         ethereum
           .send('wallet_switchEthereumChain', [{ chainId: `0x${chainIdHex}` }])

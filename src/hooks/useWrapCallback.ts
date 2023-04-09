@@ -1,4 +1,4 @@
-import { ChainId, Currency, currencyEquals, ETHER, WETH } from '@uniswap/sdk';
+import { ChainId, Currency, currencyEquals, ETHER, WETH } from 'sdk/uniswap';
 import {
   Token as V3Token,
   NativeCurrency,

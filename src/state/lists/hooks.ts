@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists';
 import { GlobalConst } from 'constants/index';
 import { useMemo } from 'react';
@@ -50,12 +50,9 @@ export type TokenAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
-  [ChainId.MUMBAI]: {},
   [ChainId.MATIC]: {},
-  [ChainId.DOGECHAIN]: {},
-  [ChainId.DOEGCHAIN_TESTNET]: {},
-  [ChainId.ZKTESTNET]: {},
-  [ChainId.ZKEVM]: {},
+  [ChainId.ZK_ERA]: {},
+  [ChainId.ZK_ERA_TESTNET]: {},
 };
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =

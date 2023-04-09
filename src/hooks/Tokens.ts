@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings';
-import { Currency, ETHER, Token, currencyEquals, ChainId } from '@uniswap/sdk';
+import { Currency, ETHER, Token, currencyEquals, ChainId } from 'sdk/uniswap';
 import { useMemo } from 'react';
 import { useSelectedTokenList } from 'state/lists/hooks';
 import {
@@ -275,7 +275,7 @@ export function useCurrency(
   currencyId: string | undefined,
 ): Currency | null | undefined {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : ChainId.ZK_ERA_TESTNET;
   const nativeCurrency = ETHER[chainIdToUse];
   const isETH = currencyId?.toUpperCase() === 'ETH';
   const token = useToken(isETH ? undefined : currencyId);

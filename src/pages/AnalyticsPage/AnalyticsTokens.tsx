@@ -14,7 +14,7 @@ import { getTopTokensTotal, getTopTokensV3 } from 'utils/v3-graph';
 import { useDispatch } from 'react-redux';
 import { setAnalyticsLoaded } from 'state/analytics/actions';
 import { useActiveWeb3React, useAnalyticsVersion } from 'hooks';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 const AnalyticsTokens: React.FC = () => {
   const { t } = useTranslation();

@@ -13,7 +13,7 @@ import RewardSliderItem from './RewardSliderItem';
 import { useActiveWeb3React } from 'hooks';
 import { getOneYearFee } from 'utils';
 import 'components/styles/RewardSlider.scss';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 const RewardSlider: React.FC = () => {
   const theme = useTheme();

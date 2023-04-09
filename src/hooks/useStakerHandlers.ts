@@ -2,7 +2,7 @@ import NON_FUN_POS_MAN from 'abis/non-fun-pos-man.json';
 import FARMING_CENTER_ABI from 'abis/farming-center.json';
 import { Contract, providers } from 'ethers';
 import { Interface } from 'ethers/lib/utils';
-import { useCallback, useState, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
   FARMING_CENTER,
   NONFUNGIBLE_POSITION_MANAGER_ADDRESSES,

@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import { GlobalValue } from 'constants/index';
 import { useTokens } from 'hooks/Tokens';
 import { useMemo } from 'react';
@@ -82,12 +82,9 @@ export type CNTFarmInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: CNTFarmInfoAddressMap = {
-  [ChainId.MUMBAI]: {},
   [ChainId.MATIC]: {},
-  [ChainId.DOGECHAIN]: {},
-  [ChainId.DOEGCHAIN_TESTNET]: {},
-  [ChainId.ZKTESTNET]: {},
-  [ChainId.ZKEVM]: {},
+  [ChainId.ZK_ERA]: {},
+  [ChainId.ZK_ERA_TESTNET]: {},
 };
 
 const farmCache: WeakMap<CNTFarmListInfo, CNTFarmInfoAddressMap> | null =

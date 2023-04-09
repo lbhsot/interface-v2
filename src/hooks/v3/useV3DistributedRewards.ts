@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { getConfig } from 'config';
 import { formatUnits } from 'ethers/lib/utils';
 import { useFarmingSubgraph } from 'hooks/useIncentiveSubgraph';

@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 export const L1_CHAIN_IDS = [] as const;
 
@@ -38,29 +38,20 @@ export const CHAIN_INFO: ChainInfo = {
     nativeCurrencyName: 'Matic',
     nativeCurrencyDecimals: 18,
   },
-  [ChainId.DOGECHAIN]: {
-    docs: 'https://algebra.finance/',
-    explorer: 'https://explorer.dogechain.dog',
+  [ChainId.ZK_ERA_TESTNET]: {
+    docs: 'https://era.zksync.io/docs/',
+    explorer: 'https://goerli.explorer.zksync.io/m',
     infoLink: 'https://algebra.finance',
-    label: 'DOGECHAIN',
-    nativeCurrencySymbol: 'WDOGE',
-    nativeCurrencyName: 'Wrapped Doge',
-    nativeCurrencyDecimals: 18,
-  },
-  [ChainId.ZKTESTNET]: {
-    docs: 'https://algebra.finance/',
-    explorer: 'https://testnet-zkevm.polygonscan.com',
-    infoLink: 'https://algebra.finance',
-    label: 'ZKTESTNET',
+    label: 'ZK_ERA_TESTNET',
     nativeCurrencySymbol: 'ETH',
     nativeCurrencyName: 'Ether',
     nativeCurrencyDecimals: 18,
   },
-  [ChainId.ZKEVM]: {
-    docs: 'https://algebra.finance/',
-    explorer: 'https://zkevm.polygonscan.com',
+  [ChainId.ZK_ERA]: {
+    docs: 'https://era.zksync.io/docs/',
+    explorer: 'https://explorer.zksync.io/',
     infoLink: 'https://algebra.finance',
-    label: 'ZKEVM',
+    label: 'ZK_ERA',
     nativeCurrencySymbol: 'ETH',
     nativeCurrencyName: 'Ether',
     nativeCurrencyDecimals: 18,

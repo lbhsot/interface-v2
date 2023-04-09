@@ -1,10 +1,10 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import {
   RouterTypes,
   SmartRouter,
   BONUS_CUTOFF_AMOUNT,
   WALLCHAIN_PARAMS,
-} from 'constants/index';
+} from '../constants';
 import { Contract } from 'ethers';
 import { SwapDelay, RouterTypeParams, DataResponse } from 'state/swap/actions';
 

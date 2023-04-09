@@ -3,7 +3,7 @@ import { getSwapTransactionsV3 } from 'utils/v3/contest';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 dayjs.extend(utc);
 dayjs.extend(weekOfYear);
 

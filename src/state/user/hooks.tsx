@@ -1,4 +1,4 @@
-import { ChainId, Pair, Token } from '@uniswap/sdk';
+import { ChainId, Pair, Token } from 'sdk/uniswap';
 import flatMap from 'lodash.flatmap';
 import { useCallback, useMemo } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -11,19 +11,20 @@ import {
   removeSerializedToken,
   SerializedPair,
   SerializedToken,
+  toggleURLWarning,
+  updateSlippageManuallySet,
+  updateUserBonusRouter,
   updateUserDarkMode,
   updateUserDeadline,
   updateUserExpertMode,
-  updateUserSlippageTolerance,
-  toggleURLWarning,
   updateUserSingleHopOnly,
-  updateUserBonusRouter,
-  updateSlippageManuallySet,
+  updateUserSlippageTolerance,
 } from './actions';
 import {
   V2_BASES_TO_TRACK_LIQUIDITY_FOR,
   V2_PINNED_PAIRS,
 } from 'constants/v3/addresses';
+import { getPairToken } from '../../sdk/uniswap/utils';
 
 function serializeToken(token: Token): SerializedToken {
   return {
@@ -246,12 +247,17 @@ export function useURLWarningToggle(): () => void {
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
+  const [token0, token1] = tokenA.sortsBefore(tokenB)
+    ? [tokenA, tokenB]
+    : [tokenB, tokenA];
+  const pairInfo = getPairToken(token0, token1);
+  console.log(token0.symbol, token0.address, token1.symbol, token1.address);
   return new Token(
     tokenA.chainId,
-    Pair.getAddress(tokenA, tokenB),
+    Pair.getAddress(token0, token1),
     18,
-    'QUICK-V2',
-    'Quickswap V2',
+    pairInfo.symbol,
+    pairInfo.name,
   );
 }
 

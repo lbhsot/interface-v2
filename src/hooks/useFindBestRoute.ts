@@ -1,4 +1,4 @@
-import { SmartRouter, RouterTypes } from 'constants/index';
+import { SmartRouter, RouterTypes } from '../constants';
 import { SwapDelay, Field } from 'state/swap/actions';
 import {
   tryParseAmount,

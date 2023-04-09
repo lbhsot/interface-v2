@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { getConfig } from 'config';
 
 const getAPIURL = (chainId: ChainId, url: string) => {
@@ -6,8 +6,7 @@ const getAPIURL = (chainId: ChainId, url: string) => {
   const config = getConfig(chainId);
   const aprAPINetwork = config['aprAPINetwork'];
   const networkKey = aprAPINetwork ? `?network=${aprAPINetwork}` : '';
-  const apiURL = `${apiBaseURL}${url}${networkKey}`;
-  return apiURL;
+  return `${apiBaseURL}${url}${networkKey}`;
 };
 
 export async function fetchEternalFarmAPR(chainId: ChainId) {

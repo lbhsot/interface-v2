@@ -1,5 +1,5 @@
-import { ChainId } from '@uniswap/sdk';
-import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists';
+import { ChainId } from 'sdk/uniswap';
+import { TokenList } from '@uniswap/token-lists';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from 'state';
@@ -19,10 +19,9 @@ type Mutable<T> = {
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
-  [ChainId.MUMBAI]: {},
   [ChainId.MATIC]: {},
-  [ChainId.DOEGCHAIN_TESTNET]: {},
-  [ChainId.DOGECHAIN]: {},
+  [ChainId.ZK_ERA]: {},
+  [ChainId.ZK_ERA_TESTNET]: {},
 };
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =

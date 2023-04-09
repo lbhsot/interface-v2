@@ -9,7 +9,7 @@ import {
   Token,
   TokenAmount,
   Trade,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 import { ParsedQs } from 'qs';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

@@ -46,7 +46,7 @@ import {
 import 'pages/styles/lend.scss';
 import LendDetailAssetStats from './LendDetailAssetStats';
 import AdsSlider from 'components/AdsSlider';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { MI, LENDING_QS_POOL_DIRECTORY } from 'constants/v3/addresses';
 
 const LendDetailPage: React.FC = () => {

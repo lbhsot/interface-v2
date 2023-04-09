@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { SettingsModal } from 'components';
 
 import { useActiveWeb3React, useIsProMode } from 'hooks';

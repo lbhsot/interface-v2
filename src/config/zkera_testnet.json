@@ -1,11 +1,10 @@
 {
-  "v3": true,
-  "v2": false,
-  "rpc": "https://zkevm-rpc.com",
-  "blockExplorer": "https://zkevm.polygonscan.com",
-  "networkName": "Polygon zkEVM",
-  "aprAPINetwork": "zkevm",
-  "chainId": 1101,
+  "v3": false,
+  "v2": true,
+  "rpc": "https://testnet.era.zksync.dev",
+  "blockExplorer": "https://goerli.explorer.zksync.io",
+  "networkName": "ZkSync ERA Testnet",
+  "chainId": 280,
   "isMainnet": true,
   "nativeCurrencyImage": "/ETH.png",
   "nativeCurrency": {
@@ -24,7 +23,7 @@
     "available": true
   },
   "farm": {
-    "available": true
+    "available": false
   },
   "lair": {
     "available": false,
@@ -39,7 +38,7 @@
     "available": false
   },
   "analytics": {
-    "available": true
+    "available": false
   },
   "lending": {
     "available": false

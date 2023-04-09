@@ -1,19 +1,17 @@
 import polygon from './polygon.json';
-import dogechain from './dogechain.json';
-import zktestnet from './zktestnet.json';
-import zkmainnet from './zkmainnet.json';
-import { ChainId } from '@uniswap/sdk';
+import zktestnet from './zkera_testnet.json';
+import zkmainnet from './zkera.json';
+import { ChainId } from 'sdk/uniswap';
+
 const configs: any = {
   [ChainId.MATIC]: polygon,
-  [ChainId.DOGECHAIN]: dogechain,
-  [ChainId.ZKTESTNET]: zktestnet,
-  [ChainId.ZKEVM]: zkmainnet,
+  [ChainId.ZK_ERA_TESTNET]: zktestnet,
+  [ChainId.ZK_ERA]: zkmainnet,
 };
 
 export const getConfig = (network: ChainId | undefined) => {
   if (network === undefined) {
     return configs[ChainId.MATIC];
   }
-  const config = configs[network];
-  return config;
+  return configs[network];
 };

@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, Trade } from '@uniswap/sdk';
+import { Currency, currencyEquals, Trade } from 'sdk/uniswap';
 import React, { useCallback, useMemo } from 'react';
 import {
   TransactionConfirmationModal,

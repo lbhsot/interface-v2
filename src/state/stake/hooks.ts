@@ -1,21 +1,21 @@
 import {
+  ChainId,
   CurrencyAmount,
   JSBI,
+  Pair,
   Token,
   TokenAmount,
-  Pair,
-  ChainId,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 import dayjs from 'dayjs';
-import { useMemo, useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { usePairs } from 'data/Reserves';
 
 import { clientV2, clientV3 } from 'apollo/client';
 import { GLOBAL_DATA, PAIRS_BULK, PAIRS_HISTORICAL_BULK } from 'apollo/queries';
 import { GlobalConst, GlobalValue } from 'constants/index';
 import {
-  STAKING_REWARDS_INTERFACE,
   STAKING_DUAL_REWARDS_INTERFACE,
+  STAKING_REWARDS_INTERFACE,
 } from 'constants/abis/staking-rewards';
 import { useActiveWeb3React } from 'hooks';
 import {
@@ -37,21 +37,21 @@ import { unwrappedToken } from 'utils/wrappedCurrency';
 import { useTotalSupplys } from 'data/TotalSupply';
 import {
   getBlockFromTimestamp,
+  getCallStateResult,
   getDaysCurrentYear,
   getFarmLPToken,
   getOneYearFee,
   getSyrupLPToken,
   initTokenAmountFromCallResult,
-  getCallStateResult,
 } from 'utils';
 
 import {
-  SyrupInfo,
-  LairInfo,
-  StakingInfo,
-  DualStakingInfo,
-  StakingBasic,
   DualStakingBasic,
+  DualStakingInfo,
+  LairInfo,
+  StakingBasic,
+  StakingInfo,
+  SyrupInfo,
 } from 'types';
 import { useDefaultFarmList } from 'state/farms/hooks';
 import { useDefaultDualFarmList } from 'state/dualfarms/hooks';
@@ -67,7 +67,7 @@ import {
   OLD_QUICK,
   V2_FACTORY_ADDRESSES,
 } from 'constants/v3/addresses';
-import { getConfig } from '../../config/index';
+import { getConfig } from '../../config';
 import { GLOBAL_DATA_V3 } from 'apollo/queries-v3';
 import { useDefaultCNTFarmList } from 'state/cnt/hooks';
 
@@ -624,14 +624,14 @@ export const getBulkPairData = async (chainId: ChainId, pairList: any) => {
     });
 
     const [oneDayResult] = await Promise.all(
-      [oneDayOldBlock].map(async (block) => {
-        const cResult = await clientV2[chainId].query({
-          query: PAIRS_HISTORICAL_BULK(block, pairList),
-          fetchPolicy: 'network-only',
-        });
-
-        return cResult;
-      }),
+      [oneDayOldBlock]
+        .filter((item) => !!item)
+        .map(async (block) => {
+          return await clientV2[chainId].query({
+            query: PAIRS_HISTORICAL_BULK(block, pairList),
+            fetchPolicy: 'network-only',
+          });
+        }),
     );
 
     const oneDayData = oneDayResult?.data?.pairs.reduce(
@@ -1049,7 +1049,7 @@ export function useCNTStakingInfo(
 
           const valueOfTotalStakedAmountInUSDC =
             valueOfTotalStakedAmountInBaseToken &&
-            usdPrice?.quote(valueOfTotalStakedAmountInBaseToken);
+            usdPrice?.quote(valueOfTotalStakedAmountInBaseToken, chainId);
 
           const tvl = valueOfTotalStakedAmountInUSDC
             ? valueOfTotalStakedAmountInUSDC.toExact()
@@ -1333,7 +1333,7 @@ export function useDualStakingInfo(
 
           const valueOfTotalStakedAmountInUSDC =
             valueOfTotalStakedAmountInBaseToken &&
-            usdPrice?.quote(valueOfTotalStakedAmountInBaseToken);
+            usdPrice?.quote(valueOfTotalStakedAmountInBaseToken, chainId);
 
           const tvl = valueOfTotalStakedAmountInUSDC
             ? valueOfTotalStakedAmountInUSDC.toExact()
@@ -1735,7 +1735,7 @@ export function useStakingInfo(
 
           const valueOfTotalStakedAmountInUSDC =
             valueOfTotalStakedAmountInBaseToken &&
-            usdPrice?.quote(valueOfTotalStakedAmountInBaseToken);
+            usdPrice?.quote(valueOfTotalStakedAmountInBaseToken, chainId);
 
           const tvl = valueOfTotalStakedAmountInUSDC
             ? valueOfTotalStakedAmountInUSDC.toExact()

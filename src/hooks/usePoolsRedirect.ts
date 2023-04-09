@@ -1,4 +1,4 @@
-import { ChainId, currencyEquals, ETHER } from '@uniswap/sdk';
+import { ChainId, currencyEquals, ETHER } from 'sdk/uniswap';
 import { useCallback } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import useParsedQueryString from './useParsedQueryString';

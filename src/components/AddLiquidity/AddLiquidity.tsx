@@ -18,7 +18,7 @@ import {
   ETHER,
   TokenAmount,
   ChainId,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 import { useActiveWeb3React } from 'hooks';
 import { useRouterContract } from 'hooks/useContract';
 import useTransactionDeadline from 'hooks/useTransactionDeadline';
@@ -194,6 +194,7 @@ const AddLiquidity: React.FC<{
 
   useEffect(() => {
     if (currency0) {
+      console.log('currency0', currency0);
       onCurrencySelection(Field.CURRENCY_A, currency0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -218,6 +219,7 @@ const AddLiquidity: React.FC<{
 
   useEffect(() => {
     if (currency1) {
+      console.log('currency1: ', currency1);
       onCurrencySelection(Field.CURRENCY_B, currency1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

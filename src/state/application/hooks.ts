@@ -21,7 +21,7 @@ import {
   updateLocalChainId,
 } from './actions';
 import { ETHPrice, MaticPrice, TokenDetail } from './reducer';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 export function useBlockNumber(): number | undefined {
   const { chainId } = useActiveWeb3React();

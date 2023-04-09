@@ -1,4 +1,4 @@
-import { GlobalValue } from 'constants/index';
+import { GlobalValue } from '../constants';
 import {
   CurrencyAmount,
   Fraction,
@@ -6,8 +6,7 @@ import {
   Percent,
   TokenAmount,
   Trade,
-} from '@uniswap/sdk';
-import { Percent as PercentV3 } from '@uniswap/sdk-core';
+} from 'sdk/uniswap';
 import { Field } from 'state/swap/actions';
 import { basisPointsToPercent } from 'utils';
 import { OptimalRate } from '@paraswap/sdk';

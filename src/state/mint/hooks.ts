@@ -9,7 +9,7 @@ import {
   Price,
   TokenAmount,
   ChainId,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PairState, usePair } from 'data/Reserves';
@@ -125,6 +125,7 @@ export function useDerivedMintInfo(): {
         try {
           const dependentTokenAmount = independentPrice.quote(
             wrappedIndependentAmount,
+            pair.chainId,
           );
           return dependentCurrency === nativeCurrency
             ? CurrencyAmount.ether(dependentTokenAmount.raw, chainIdToUse)
@@ -276,6 +277,7 @@ export function useMintActionHandlers(
 
   const onFieldAInput = useCallback(
     (typedValue: string) => {
+      console.log('onFieldAInput -> ', typedValue);
       dispatch(
         typeInput({
           field: Field.CURRENCY_A,
@@ -288,6 +290,7 @@ export function useMintActionHandlers(
   );
   const onFieldBInput = useCallback(
     (typedValue: string) => {
+      console.log('onFieldBInput -> ', typedValue);
       dispatch(
         typeInput({
           field: Field.CURRENCY_B,
@@ -301,6 +304,7 @@ export function useMintActionHandlers(
 
   const onCurrencySelection = useCallback(
     (field: Field, currency: Currency) => {
+      console.log('onCurrencySelection -> ', field, currency);
       dispatch(
         selectCurrency({
           field,

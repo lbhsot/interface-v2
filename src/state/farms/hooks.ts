@@ -1,9 +1,9 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from 'state';
 import { FarmListInfo, StakingRaw, StakingBasic } from 'types';
-import { Token } from '@uniswap/sdk';
+import { Token } from 'sdk/uniswap';
 import { TokenAddressMap, useSelectedTokenList } from 'state/lists/hooks';
 import { getTokenFromAddress } from 'utils';
 import { useTokens } from 'hooks/Tokens';
@@ -84,12 +84,9 @@ export type StakingInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: StakingInfoAddressMap = {
-  [ChainId.MUMBAI]: {},
   [ChainId.MATIC]: {},
-  [ChainId.DOGECHAIN]: {},
-  [ChainId.DOEGCHAIN_TESTNET]: {},
-  [ChainId.ZKTESTNET]: {},
-  [ChainId.ZKEVM]: {},
+  [ChainId.ZK_ERA]: {},
+  [ChainId.ZK_ERA_TESTNET]: {},
 };
 
 const farmCache: WeakMap<FarmListInfo, StakingInfoAddressMap> | null =

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DoubleCurrencyLogo } from 'components';
 import Loader from '../Loader';
-import { ChainId, Token } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import { Link } from 'react-router-dom';
 import { Box, Button, useMediaQuery, useTheme } from '@material-ui/core';
 import { formatUnits } from 'ethers/lib/utils';

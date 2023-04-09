@@ -1,5 +1,5 @@
 {
-  "v3": true,
+  "v3": false,
   "v2": true,
   "rpc": "https://polygon-rpc.com/",
   "blockExplorer": "https://polygonscan.com",

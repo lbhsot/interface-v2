@@ -303,7 +303,7 @@ const SwapMain: React.FC = () => {
           <SwapBestTrade />
         )}
         {v2 && Number(swapType) === SWAP_NORMAL && <Swap />}
-        {v3 && Number(swapType) === SWAP_V3 && <SwapV3Page />}
+        {/*{v3 && Number(swapType) === SWAP_V3 && <SwapV3Page />}*/}
         {showCrossChain && Number(swapType) === SWAP_CROSS_CHAIN && (
           <SwapCrossChain />
         )}

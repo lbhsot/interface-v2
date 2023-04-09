@@ -15,7 +15,7 @@ import {
 } from 'state/multicall/v3/hooks';
 import GammaPairABI from 'constants/abis/gamma-hypervisor.json';
 import { formatUnits, Interface } from 'ethers/lib/utils';
-import { Token } from '@uniswap/sdk';
+import { Token } from 'sdk/uniswap';
 import { useTokenBalances } from 'state/wallet/hooks';
 
 export default function MyLiquidityPoolsV3() {

@@ -1,9 +1,8 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from 'state';
 import { SyrupListInfo, SyrupRaw, SyrupBasic } from 'types';
-import { Token } from '@uniswap/sdk';
 import { TokenAddressMap, useSelectedTokenList } from 'state/lists/hooks';
 import { getTokenFromAddress } from 'utils';
 import { useTokens } from 'hooks/Tokens';
@@ -71,12 +70,9 @@ export type SyrupInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: SyrupInfoAddressMap = {
-  [ChainId.MUMBAI]: {},
   [ChainId.MATIC]: {},
-  [ChainId.DOGECHAIN]: {},
-  [ChainId.DOEGCHAIN_TESTNET]: {},
-  [ChainId.ZKTESTNET]: {},
-  [ChainId.ZKEVM]: {},
+  [ChainId.ZK_ERA]: {},
+  [ChainId.ZK_ERA_TESTNET]: {},
 };
 
 const syrupCache: WeakMap<SyrupListInfo, SyrupInfoAddressMap> | null =

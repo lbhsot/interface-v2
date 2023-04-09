@@ -6,13 +6,13 @@ import {
   WETH,
   Token,
   Trade,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 import { useEffect, useMemo, useState } from 'react';
 import { PairState, usePairs, usePair } from 'data/Reserves';
 import { useActiveWeb3React } from 'hooks';
 import { unwrappedToken, wrappedCurrency } from './wrappedCurrency';
 import { useDQUICKtoQUICK } from 'state/stake/hooks';
-import { GlobalValue } from 'constants/index';
+import { GlobalValue } from '../constants';
 import { useAllCommonPairs } from 'hooks/Trades';
 import { tryParseAmount } from 'state/swap/hooks';
 import { useEthPrice, useMaticPrice } from 'state/application/hooks';
@@ -39,17 +39,18 @@ dayjs.extend(weekOfYear);
 export default function useUSDCPrice(currency?: Currency): Price | undefined {
   const { chainId } = useActiveWeb3React();
 
+  const usdcToken = useMemo(() => {
+    if (!chainId) return undefined;
+    return USDC[chainId];
+  }, [chainId]);
+  const allowedPairs = useAllCommonPairs(currency, usdcToken);
+  console.log(allowedPairs, currency?.symbol, usdcToken?.symbol);
   const amountOut = chainId
-    ? tryParseAmount(chainId, '1', GlobalValue.tokens.COMMON.USDC)
+    ? tryParseAmount(chainId, '1', usdcToken)
     : undefined;
 
-  const allowedPairs = useAllCommonPairs(
-    currency,
-    GlobalValue.tokens.COMMON.USDC,
-  );
-
   return useMemo(() => {
-    if (!currency || !amountOut || !allowedPairs.length) {
+    if (!currency || !amountOut || !allowedPairs.length || !usdcToken) {
       return undefined;
     }
 
@@ -58,18 +59,14 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
         maxHops: 3,
         maxNumResults: 1,
       })[0] ?? null;
+    console.log('trade -> ', trade);
 
     if (!trade) return;
 
     const { numerator, denominator } = trade.route.midPrice;
 
-    return new Price(
-      currency,
-      GlobalValue.tokens.COMMON.USDC,
-      denominator,
-      numerator,
-    );
-  }, [currency, allowedPairs, amountOut]);
+    return new Price(currency, usdcToken, denominator, numerator);
+  }, [currency, allowedPairs, amountOut, usdcToken]);
 }
 
 export function useUSDCPricesFromAddresses(addressArray: string[]) {

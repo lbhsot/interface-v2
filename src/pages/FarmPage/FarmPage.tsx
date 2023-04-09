@@ -12,11 +12,11 @@ import 'pages/styles/farm.scss';
 import { useDefaultFarmList } from 'state/farms/hooks';
 import { useDefaultCNTFarmList } from 'state/cnt/hooks';
 import { useDefaultDualFarmList } from 'state/dualfarms/hooks';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import VersionToggle from 'components/Toggle/VersionToggle';
 import V3Farms from 'pages/FarmPage/V3';
 import { useIsV2 } from 'state/application/hooks';
-import { getConfig } from '../../config/index';
+import { getConfig } from '../../config';
 import useParsedQueryString from 'hooks/useParsedQueryString';
 import { useHistory } from 'react-router-dom';
 

@@ -30,7 +30,7 @@ import {
 } from 'utils/v3-graph';
 import { useDispatch } from 'react-redux';
 import { setAnalyticsLoaded } from 'state/analytics/actions';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import { useActiveWeb3React, useAnalyticsVersion } from 'hooks';
 import { V2_FACTORY_ADDRESSES } from 'constants/v3/addresses';
 import { GAMMA_MASTERCHEF_ADDRESSES } from 'constants/v3/addresses';

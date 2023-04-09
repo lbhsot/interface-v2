@@ -54,7 +54,7 @@ import { PageLayout } from 'layouts';
 import { getLibrary } from 'utils';
 import StyledThemeProvider from 'theme/index';
 import { Web3ReactManager, Popups } from 'components';
-import { GlobalConst } from 'constants/index';
+import { GlobalConst } from './constants';
 import ApplicationUpdater from 'state/application/updater';
 import TransactionUpdater from 'state/transactions/updater';
 import ListsUpdater from 'state/lists/updater';
@@ -75,10 +75,9 @@ import Background from 'layouts/Background';
 import GasUpdater from 'state/application/gasUpdater';
 import { RedirectExternal } from 'components/RedirectExternal/RedirectExternal';
 
-import { getConfig } from 'config/index';
-import { useActiveWeb3React } from 'hooks';
+import { getConfig } from './config';
 import { Web3Provider } from '@ethersproject/providers';
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 const Web3ProviderNetwork = createWeb3ReactRoot(
   GlobalConst.utils.NetworkContextName,
@@ -196,7 +195,7 @@ const App: React.FC = () => {
                     {showPool && v3 && (
                       <Route exact strict path='/pool/:tokenId'>
                         <PageLayout>
-                          <PositionPage></PositionPage>
+                          <PositionPage />
                         </PageLayout>
                       </Route>
                     )}
@@ -206,7 +205,7 @@ const App: React.FC = () => {
                         path='/add/:currencyIdA?/:currencyIdB?/:version?'
                       >
                         <PageLayout>
-                          <PoolsPage></PoolsPage>
+                          <PoolsPage />
                         </PageLayout>
                       </Route>
                     )}
@@ -216,14 +215,14 @@ const App: React.FC = () => {
                         path='/increase/:currencyIdA?/:currencyIdB?/:tokenId'
                       >
                         <PageLayout>
-                          <IncreaseLiquidityV3Page></IncreaseLiquidityV3Page>
+                          <IncreaseLiquidityV3Page />
                         </PageLayout>
                       </Route>
                     )}
                     {showPool && v3 && (
                       <Route exact path='/remove/:tokenId'>
                         <PageLayout>
-                          <RemoveLiquidityV3Page></RemoveLiquidityV3Page>
+                          <RemoveLiquidityV3Page />
                         </PageLayout>
                       </Route>
                     )}
@@ -266,7 +265,7 @@ const App: React.FC = () => {
                       <Route exact path='/predictions'>
                         <RedirectExternal
                           to={`${process.env.REACT_APP_PREDICTIONS_URL}`}
-                        ></RedirectExternal>
+                        />
                       </Route>
                     )}
                     {showGamingHub && (
@@ -274,7 +273,7 @@ const App: React.FC = () => {
                         <RedirectExternal
                           to={`${process.env.REACT_APP_GAMEHUB_URL}`}
                           target={'_top'}
-                        ></RedirectExternal>
+                        />
                       </Route>
                     )}
                     {showAnalytics && (

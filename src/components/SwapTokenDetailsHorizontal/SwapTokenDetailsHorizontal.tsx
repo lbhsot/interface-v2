@@ -16,7 +16,7 @@ import {
   shortenAddress,
 } from 'utils';
 import { LineChart } from 'components';
-import { ChainId, Token } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import dayjs from 'dayjs';
 import { unwrappedToken } from 'utils/wrappedCurrency';
 import { getIntervalTokenDataV3, getTokenInfoV3 } from 'utils/v3-graph';
@@ -56,7 +56,7 @@ const SwapTokenDetailsHorizontal: React.FC<{
         .startOf('hour')
         .unix();
 
-      let tokenPriceDataV2, tokenPriceIsV2;
+      let tokenPriceDataV2;
       if (v2) {
         tokenPriceDataV2 = await getIntervalTokenData(
           tokenAddress,
@@ -65,21 +65,19 @@ const SwapTokenDetailsHorizontal: React.FC<{
           latestBlock,
           chainIdToUse,
         );
-        tokenPriceIsV2 = !!tokenPriceDataV2.find(
-          (item) => item.open && item.close,
-        );
+        // tokenPriceIsV2 = !!tokenPriceDataV2.find(
+        //   (item) => item.open && item.close,
+        // );
       }
-      const tokenPriceDataV3 = await getIntervalTokenDataV3(
-        tokenAddress.toLowerCase(),
-        startTime,
-        3600,
-        latestBlock,
-        chainIdToUse,
-      );
+      // const tokenPriceDataV3 = await getIntervalTokenDataV3(
+      //   tokenAddress.toLowerCase(),
+      //   startTime,
+      //   3600,
+      //   latestBlock,
+      //   chainIdToUse,
+      // );
 
-      const tokenPriceData = tokenPriceIsV2
-        ? tokenPriceDataV2
-        : tokenPriceDataV3;
+      const tokenPriceData = tokenPriceDataV2;
       setPriceData(tokenPriceData);
 
       let token0;

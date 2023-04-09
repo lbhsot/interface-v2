@@ -9,7 +9,7 @@ import { PoolData, USDPricedPoolAsset } from 'utils/marketxyz/fetchPoolData';
 import { useTranslation } from 'react-i18next';
 import 'pages/styles/lend.scss';
 import { getPoolAssetToken } from 'utils/marketxyz';
-import { ChainId, Token } from '@uniswap/sdk';
+import { ChainId, Token } from 'sdk/uniswap';
 import { GlobalValue } from 'constants/index';
 import LendAlertBox from './LendAlertBox';
 import { usePoolsData } from 'hooks/marketxyz/usePoolData';

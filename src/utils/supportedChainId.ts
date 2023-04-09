@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 
 /**
  * Returns the input chain ID if chain is supported. If not, return undefined

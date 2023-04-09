@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk';
+import { ChainId } from 'sdk/uniswap';
 import React from 'react';
 import { Box, Button } from '@material-ui/core';
 import { CustomModal } from 'components';

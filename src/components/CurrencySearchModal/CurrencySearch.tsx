@@ -1,4 +1,4 @@
-import { ChainId, Currency, ETHER, Token } from '@uniswap/sdk';
+import { ChainId, Currency, ETHER, Token } from 'sdk/uniswap';
 import React, {
   KeyboardEvent,
   RefObject,
@@ -51,7 +51,7 @@ const CurrencySearch: React.FC<CurrencySearchProps> = ({
   const { t } = useTranslation();
   const { account, chainId } = useActiveWeb3React();
   const dispatch = useDispatch<AppDispatch>();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : ChainId.ZK_ERA_TESTNET;
   const nativeCurrency = ETHER[chainIdToUse];
   const handleInput = useCallback((input: string) => {
     const checksummedInput = isAddress(input);

@@ -6,7 +6,7 @@ import {
   Token,
   TokenAmount,
   WETH,
-} from '@uniswap/sdk';
+} from 'sdk/uniswap';
 
 import {
   Currency as CurrencyV3,

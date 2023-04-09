@@ -1,4 +1,4 @@
-import { TokenAmount, Token, Price, Pair } from '@uniswap/sdk';
+import { TokenAmount, Token, Price, Pair } from 'sdk/uniswap';
 import { Version } from '@uniswap/token-lists';
 
 export interface AdsRaw {
@@ -33,7 +33,7 @@ export interface SyrupListInfo {
   readonly logoURI?: string;
 }
 
-export interface CNTFarmListInfo extends FarmListInfo {}
+export type CNTFarmListInfo = FarmListInfo;
 
 export interface DualFarmListInfo {
   readonly name: string;

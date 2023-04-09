@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { GlobalConst } from 'constants/index';
+import { GlobalConst } from '../constants';
 
 export const SUBGRAPH_HEALTH = gql`
   query health {
