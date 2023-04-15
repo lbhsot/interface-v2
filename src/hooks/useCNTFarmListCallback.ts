@@ -7,6 +7,7 @@ import { AppDispatch } from 'state';
 import { fetchCNTFarmList } from 'state/cnt/actions';
 import getCNTFarmList from 'utils/getCNTFarmList';
 import resolveENSContentHash from 'utils/resolveENSContentHash';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export function useCNTFarmListCallback(): (url: string) => Promise<any> {
   const { library, chainId, account } = useActiveWeb3React();
@@ -25,7 +26,7 @@ export function useCNTFarmListCallback(): (url: string) => Promise<any> {
     async (url: string) => {
       const requestId = nanoid();
       dispatch(fetchCNTFarmList.pending({ url, requestId }));
-      return getCNTFarmList(chainId || ChainId.MATIC, account, ensResolver)
+      return getCNTFarmList(chainId || DEFAULT_CHAIN_ID, account, ensResolver)
         .then((cntFarmList) => {
           dispatch(
             fetchCNTFarmList.fulfilled({

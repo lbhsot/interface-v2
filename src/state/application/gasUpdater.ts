@@ -5,6 +5,7 @@ import { useActiveWeb3React } from 'hooks';
 import { updateGasPrice } from './actions';
 import { ChainId } from 'sdk/uniswap';
 import { useAppDispatch, useAppSelector } from 'state';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export default function GasUpdater(): null {
   const dispatch = useAppDispatch();
@@ -12,7 +13,7 @@ export default function GasUpdater(): null {
   const { chainId } = useActiveWeb3React();
 
   const block = useAppSelector((state) => {
-    return state.application.blockNumber[chainId ?? ChainId.MATIC];
+    return state.application.blockNumber[chainId ?? DEFAULT_CHAIN_ID];
   });
 
   const { fetchGasPrice, gasPrice, gasPriceLoading } = useGasPrice();

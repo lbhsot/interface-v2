@@ -18,12 +18,13 @@ import {
   LENDING_QS_POOL_DIRECTORY,
   LENDING_QS_POOLS,
 } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const LendPage: React.FC = () => {
   const { t } = useTranslation();
   const history = useHistory();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const { breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down('xs'));
 

@@ -17,6 +17,7 @@ import 'components/styles/StakeModal.scss';
 import { useTranslation } from 'react-i18next';
 import { DLQUICK, OLD_QUICK } from 'constants/v3/addresses';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface StakeQuickModalProps {
   open: boolean;
@@ -32,7 +33,7 @@ const StakeQuickModal: React.FC<StakeQuickModalProps> = ({
   const { t } = useTranslation();
   const [attempting, setAttempting] = useState(false);
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const addTransaction = useTransactionAdder();
   const finalizedTransaction = useTransactionFinalizer();
   const quickToken = isNew ? DLQUICK[chainIdToUse] : OLD_QUICK[chainIdToUse];

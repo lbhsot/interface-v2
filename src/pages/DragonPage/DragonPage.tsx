@@ -15,6 +15,7 @@ import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
 import { useHistory } from 'react-router-dom';
 import { DLDQUICK, DLQUICK } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const DragonPage: React.FC = () => {
   const { breakpoints } = useTheme();
@@ -23,7 +24,7 @@ const DragonPage: React.FC = () => {
   //showing old dragons lair until we're ready to deploy
 
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const quickToken = DLQUICK[chainIdToUse];
   const dQuickToken = DLDQUICK[chainIdToUse];
   const config = getConfig(chainIdToUse);

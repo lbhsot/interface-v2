@@ -1,8 +1,6 @@
 import { AbstractConnector } from '@web3-react/abstract-connector';
 import { ConnectorUpdate } from '@web3-react/types';
 
-const CHAIN_ID = 137;
-
 interface WalletConnectorArguments {
   supportedChainIds?: number[];
 }

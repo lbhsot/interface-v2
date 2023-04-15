@@ -2952,8 +2952,8 @@ export async function getLiquidityChart(address: string, chainId: ChainId) {
 
   const tickIdxToInitializedTick = keyBy(initializedTicks, 'tickIdx');
 
-  const token0 = new Token(137, token0Address, parseInt(token0Decimals));
-  const token1 = new Token(137, token1Address, parseInt(token1Decimals));
+  const token0 = new Token(280, token0Address, parseInt(token0Decimals));
+  const token1 = new Token(280, token1Address, parseInt(token1Decimals));
 
   let activeTickIdxForPrice = activeTickIdx;
   if (activeTickIdxForPrice < TickMath.MIN_TICK) {

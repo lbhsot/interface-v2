@@ -11,6 +11,7 @@ import { useActiveWeb3React } from 'hooks';
 import { TableVirtuoso } from 'react-virtuoso';
 import { useTranslation } from 'react-i18next';
 import { V2_MATIC_USDT_PAIR } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SwapProChartTrade: React.FC<{
   showChart: boolean;
@@ -121,7 +122,7 @@ const SwapProChartTrade: React.FC<{
               'USDT'}`}
             pairAddress={
               pairAddress ??
-              V2_MATIC_USDT_PAIR[chainId ? chainId : ChainId.MATIC]
+              V2_MATIC_USDT_PAIR[chainId ? chainId : DEFAULT_CHAIN_ID]
             }
             pairTokenReversed={pairTokenReversed}
           />

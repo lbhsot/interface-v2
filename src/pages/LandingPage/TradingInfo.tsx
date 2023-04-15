@@ -3,23 +3,22 @@ import { Box } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import { StakeQuickModal } from 'components';
 import { useNewLairInfo, useTotalRewardsDistributed } from 'state/stake/hooks';
-import { formatCompact, useLairDQUICKAPY } from 'utils';
+import { formatCompact } from 'utils';
 import { useTranslation } from 'react-i18next';
 import { ChainId } from 'sdk/uniswap';
 import { useActiveWeb3React } from 'hooks';
 import { getConfig } from '../../config/index';
 import { useV3DistributedRewards } from 'hooks/v3/useV3DistributedRewards';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const TradingInfo: React.FC<{ globalData: any; v3GlobalData: any }> = ({
   globalData,
   v3GlobalData,
 }) => {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
-  const lairInfo = useNewLairInfo();
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const [openStakeModal, setOpenStakeModal] = useState(false);
 
-  const dQUICKAPY = useLairDQUICKAPY(true, lairInfo);
   const config = getConfig(chainIdToUse);
   const oldLair = config['lair']['oldLair'];
   const newLair = config['lair']['newLair'];
@@ -105,11 +104,7 @@ const TradingInfo: React.FC<{ globalData: any; v3GlobalData: any }> = ({
       </Box>
       {(oldLair || newLair) && (
         <Box className='tradingSection' pt='20px'>
-          {dQUICKAPY ? (
-            <h3>{dQUICKAPY}%</h3>
-          ) : (
-            <Skeleton variant='rect' width={100} height={45} />
-          )}
+          <Skeleton variant='rect' width={100} height={45} />
           <p>dQUICK {t('apy')}</p>
           <h4 onClick={() => setOpenStakeModal(true)}>
             {t('stake')} {'>'}

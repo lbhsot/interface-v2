@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
 import { OLD_DQUICK, OLD_QUICK } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SyrupAPR: React.FC<{ syrup: SyrupInfo; dQUICKAPY: string }> = ({
   syrup,
@@ -14,7 +15,7 @@ const SyrupAPR: React.FC<{ syrup: SyrupInfo; dQUICKAPY: string }> = ({
 }) => {
   const { t } = useTranslation();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
 
   const isDQUICKStakingToken = syrup.stakingToken.equals(
     OLD_DQUICK[chainIdToUse],

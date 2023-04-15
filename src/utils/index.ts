@@ -96,6 +96,7 @@ import { useEthPrice } from 'state/application/hooks';
 import { formatTokenSymbol, getGlobalDataV3 } from './v3-graph';
 import { TFunction } from 'react-i18next';
 import { PAIR_ID_V3, SWAP_TRANSACTIONS_v3 } from 'apollo/queries-v3';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 dayjs.extend(utc);
 dayjs.extend(weekOfYear);
@@ -2143,75 +2144,6 @@ export function getTokenAPRSyrup(syrup: SyrupInfo) {
     : 0;
 }
 
-export function useLairDQUICKAPY(isNew: boolean, lair?: LairInfo) {
-  const daysCurrentYear = getDaysCurrentYear();
-  const { chainId } = useActiveWeb3React();
-  let chainIdToUse = chainId ? chainId : ChainId.MATIC;
-  const config = getConfig(chainIdToUse);
-  const newLair = config['lair']['newLair'];
-  const oldLair = config['lair']['oldLair'];
-  const v2 = config['v2'];
-  const v3 = config['v3'];
-
-  chainIdToUse = isNew
-    ? newLair
-      ? chainIdToUse
-      : ChainId.MATIC
-    : oldLair
-    ? chainIdToUse
-    : ChainId.MATIC;
-  const quickToken = isNew ? DLQUICK[chainIdToUse] : OLD_QUICK[chainIdToUse];
-  const quickPrice = useUSDCPriceFromAddress(quickToken.address);
-  const [feesPercent, setFeesPercent] = useState(0);
-  const { ethPrice } = useEthPrice();
-
-  useEffect(() => {
-    if (!chainId) return;
-    (async () => {
-      let feePercent = 0;
-      if (v3) {
-        const v3Data = await getGlobalDataV3(chainId);
-        if (v3Data) {
-          feePercent += Number(v3Data.feesUSD ?? 0) / 7.5;
-        }
-        if (!v2) {
-          setFeesPercent(feePercent);
-        }
-      }
-      if (ethPrice.price && ethPrice.oneDayPrice && v2) {
-        const v2data = await getGlobalData(
-          ethPrice.price,
-          ethPrice.oneDayPrice,
-          V2_FACTORY_ADDRESSES[chainId],
-          chainId,
-        );
-        if (v2data) {
-          feePercent +=
-            (Number(v2data.oneDayVolumeUSD) * GlobalConst.utils.FEEPERCENT) /
-            14.7;
-        }
-        if (v3) {
-          setFeesPercent(feePercent);
-        }
-      }
-    })();
-  }, [ethPrice.oneDayPrice, ethPrice.price, chainId, v2, v3]);
-
-  if (!lair || !quickPrice) return '';
-
-  const dQUICKAPR =
-    (feesPercent * daysCurrentYear) /
-    (Number(lair.totalQuickBalance.toExact()) * quickPrice);
-
-  if (!dQUICKAPR) return '';
-  const temp = Math.pow(1 + dQUICKAPR / daysCurrentYear, daysCurrentYear) - 1;
-  if (temp > 100) {
-    return '> 10000';
-  } else {
-    return Number(temp * 100).toLocaleString('us');
-  }
-}
-
 export function returnFullWidthMobile(isMobile: boolean) {
   return isMobile ? 1 : 'unset';
 }
@@ -2501,13 +2433,13 @@ export function getFarmLPToken(
     new TokenAmount(info.tokens[0], '0'),
     new TokenAmount(info.tokens[1], '0'),
   );
-  if (lp && lp !== '') return new Token(137, lp, 18, 'SLP', 'Staked LP');
+  if (lp && lp !== '') return new Token(280, lp, 18, 'SLP', 'Staked LP');
   return dummyPair.liquidityToken;
 }
 
 export function getSyrupLPToken(info: SyrupBasic | SyrupInfo) {
   const lp = info.lp;
-  if (lp && lp !== '') return new Token(137, lp, 18, 'SLP', 'Staked LP');
+  if (lp && lp !== '') return new Token(280, lp, 18, 'SLP', 'Staked LP');
   return info.stakingToken;
 }
 

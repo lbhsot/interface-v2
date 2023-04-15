@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const SwapPageHeader: React.FC<{ proMode: boolean }> = ({ proMode }) => {
-  const helpURL = process.env.REACT_APP_HELP_URL;
+  const helpURL = '';
   const { t } = useTranslation();
 
   return proMode ? (

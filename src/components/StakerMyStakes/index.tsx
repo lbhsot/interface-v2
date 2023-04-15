@@ -35,6 +35,7 @@ import { useMasterChefContracts } from 'hooks/useContract';
 import { formatUnits } from 'ethers/lib/utils';
 import { useFarmingHandlers } from 'hooks/useStakerHandlers';
 import CurrencyLogo from 'components/CurrencyLogo';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export const FarmingMyFarms: React.FC<{
   search: string;
@@ -733,7 +734,7 @@ export const FarmingMyFarms: React.FC<{
                     size='28px'
                     currency={
                       new Token(
-                        chainId ?? ChainId.MATIC,
+                        chainId ?? DEFAULT_CHAIN_ID,
                         reward.rewardAddress,
                         18,
                         reward.symbol,

@@ -63,6 +63,7 @@ import useSwapRedirects from 'hooks/useSwapRedirect';
 import callWallchainAPI from 'utils/wallchainService';
 import ParaswapABI from 'constants/abis/ParaSwap_ABI.json';
 import { ONE } from 'v3lib/utils';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SwapBestTrade: React.FC<{
   currencyBgClass?: string;
@@ -110,7 +111,7 @@ const SwapBestTrade: React.FC<{
   const { t } = useTranslation();
   const { account, chainId, library } = useActiveWeb3React();
   const { independentField, typedValue, recipient } = useSwapState();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const {
     currencyBalances,
     parsedAmount,

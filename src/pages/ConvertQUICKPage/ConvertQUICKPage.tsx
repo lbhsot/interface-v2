@@ -27,6 +27,7 @@ import { ChainId } from 'sdk/uniswap';
 import { OLD_QUICK } from 'constants/v3/addresses';
 import { getConfig } from 'config';
 import { useHistory } from 'react-router-dom';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const ConvertQUICKPage: React.FC = () => {
   const { t } = useTranslation();
@@ -39,7 +40,7 @@ const ConvertQUICKPage: React.FC = () => {
   const [txPending, setTxPending] = useState(false);
   const [txHash, setTxHash] = useState('');
   const [txError, setTxError] = useState('');
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const quickToken = OLD_QUICK[chainIdToUse];
   const quickBalance = useTokenBalance(account ?? undefined, quickToken);
   const quickConvertContract = useQUICKConversionContract();

@@ -7,6 +7,7 @@ import { updateBlockNumber } from './actions';
 import { useEthPrice, useLocalChainId, useMaticPrice } from './hooks';
 import { getEthPrice } from 'utils';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export default function Updater(): null {
   const { library, chainId } = useActiveWeb3React();
@@ -57,7 +58,7 @@ export default function Updater(): null {
     const localChainIdStr = localStorage.getItem('quickswap_chainId');
     const localChainId = localChainIdStr
       ? (Number(localChainIdStr) as ChainId)
-      : ChainId.MATIC;
+      : DEFAULT_CHAIN_ID;
     updateLocalChainId(localChainId);
   }, [updateLocalChainId]);
 

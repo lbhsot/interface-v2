@@ -12,6 +12,7 @@ import { getConfig } from '../../config';
 import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
 import { GammaPairs } from 'constants/index';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 const YourLiquidityPools = lazy(() => import('./YourLiquidityPools'));
 const MyLiquidityPoolsV3 = lazy(() => import('./v3/MyLiquidityPoolsV3'));
 const MyGammaPoolsV3 = lazy(() => import('./v3/MyGammaPoolsV3'));
@@ -20,7 +21,7 @@ const PoolsPage: React.FC = () => {
   const { t } = useTranslation();
   const { isV2 } = useIsV2();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const config = getConfig(chainIdToUse);
   const pool = config['pools']['available'];
   // const v3 = config['v3'];
@@ -29,7 +30,7 @@ const PoolsPage: React.FC = () => {
   const { breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down('xs'));
 
-  const helpURL = process.env.REACT_APP_HELP_URL;
+  const helpURL = '';
   const allGammaPairs = chainId ? GammaPairs[chainId] : {};
 
   return (

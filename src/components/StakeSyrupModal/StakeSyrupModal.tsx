@@ -27,6 +27,7 @@ import {
   calculateGasMargin,
 } from 'utils';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface StakeSyrupModalProps {
   open: boolean;
@@ -52,7 +53,7 @@ const StakeSyrupModal: React.FC<StakeSyrupModalProps> = ({
   const [stakePercent, setStakePercent] = useState(0);
   const [approving, setApproving] = useState(false);
   const maxAmountInput = maxAmountSpend(
-    chainId ? chainId : ChainId.MATIC,
+    chainId ? chainId : DEFAULT_CHAIN_ID,
     userLiquidityUnstaked,
   );
   const { parsedAmount, error } = useDerivedSyrupInfo(

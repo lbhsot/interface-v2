@@ -12,6 +12,7 @@ import { PlusHelper } from 'components/QuestionHelper';
 import { ReactComponent as TokenSelectedIcon } from 'assets/images/TokenSelected.svg';
 import { formatNumber, formatTokenAmount } from 'utils';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 //TODO Investigate: shouldnt this key return 'ETH' not 'ETHER'
 function currencyKey(currency: Token): string {
@@ -87,7 +88,7 @@ const CurrencyRow: React.FC<CurrenyRowProps> = ({
   const { account, chainId } = useActiveWeb3React();
   const key = currencyKey(currency);
   const customAdded = useIsUserAddedToken(currency);
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
 
   const removeToken = useRemoveUserAddedToken();

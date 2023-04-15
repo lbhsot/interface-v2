@@ -38,6 +38,7 @@ import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
 import useParsedQueryString from 'hooks/useParsedQueryString';
 import { useHistory } from 'react-router-dom';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const LOADFARM_COUNT = 10;
 const POOL_COLUMN = '1';
@@ -83,7 +84,7 @@ const FarmsList: React.FC<FarmsListProps> = ({ bulkPairs }) => {
     setFarmSearch,
   );
 
-  const chainIdOrDefault = chainId ?? ChainId.MATIC;
+  const chainIdOrDefault = chainId ?? DEFAULT_CHAIN_ID;
 
   const addedLPStakingInfos = useStakingInfo(
     chainIdOrDefault,

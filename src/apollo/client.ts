@@ -10,12 +10,6 @@ export type ApolloChainMap = Readonly<
 >;
 
 export const clientV2: ApolloChainMap = {
-  [ChainId.MATIC]: new ApolloClient({
-    link: new HttpLink({
-      uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,
-    }),
-    cache: new InMemoryCache(),
-  }),
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,
@@ -31,12 +25,6 @@ export const clientV2: ApolloChainMap = {
 };
 
 export const clientV3: ApolloChainMap = {
-  [ChainId.MATIC]: new ApolloClient({
-    link: new HttpLink({
-      uri: process.env.REACT_APP_GRAPH_V3_137_API_URL,
-    }),
-    cache: new InMemoryCache(),
-  }),
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_GRAPH_V3_137_API_URL,
@@ -52,12 +40,6 @@ export const clientV3: ApolloChainMap = {
 };
 
 export const farmingClient: ApolloChainMap = {
-  [ChainId.MATIC]: new ApolloClient({
-    link: new HttpLink({
-      uri: process.env.REACT_APP_V3_FARMING_API_137_URL,
-    }),
-    cache: new InMemoryCache(),
-  }),
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_V3_FARMING_API_137_URL,
@@ -73,12 +55,6 @@ export const farmingClient: ApolloChainMap = {
 };
 
 export const txClient: ApolloChainMap = {
-  [ChainId.MATIC]: new ApolloClient({
-    link: new HttpLink({
-      uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,
-    }),
-    cache: new InMemoryCache(),
-  }),
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,
@@ -94,12 +70,6 @@ export const txClient: ApolloChainMap = {
 };
 
 export const blockClient: ApolloChainMap = {
-  [ChainId.MATIC]: new ApolloClient({
-    link: new HttpLink({
-      uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,
-    }),
-    cache: new InMemoryCache(),
-  }),
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,

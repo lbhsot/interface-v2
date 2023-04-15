@@ -29,15 +29,6 @@ type ChainInfo = { readonly [chainId: number]: L1ChainInfo | L2ChainInfo } & {
   { readonly [chainId in SupportedL1ChainId]: L1ChainInfo };
 
 export const CHAIN_INFO: ChainInfo = {
-  [ChainId.MATIC]: {
-    docs: 'https://algebra.finance/',
-    explorer: 'https://polygonscan.com/',
-    infoLink: 'https://algebra.finance',
-    label: 'Polygon',
-    nativeCurrencySymbol: 'MATIC',
-    nativeCurrencyName: 'Matic',
-    nativeCurrencyDecimals: 18,
-  },
   [ChainId.ZK_ERA_TESTNET]: {
     docs: 'https://era.zksync.io/docs/',
     explorer: 'https://goerli.explorer.zksync.io/m',

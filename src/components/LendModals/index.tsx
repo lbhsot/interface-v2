@@ -48,6 +48,7 @@ import { ChainId } from 'sdk/uniswap';
 import { LENDING_LENS } from 'constants/v3/addresses';
 import { formatUnits, parseUnits } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface QuickModalContentProps {
   borrow?: boolean;
@@ -64,7 +65,7 @@ export const QuickModalContent: React.FC<QuickModalContentProps> = ({
   const { t } = useTranslation();
   const { sdk } = useMarket();
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const { ethPrice } = useEthPrice();
   const assetUSDPriceObj = useUSDCPrice(getPoolAssetToken(asset, chainId));
   const assetDecimals = asset.underlyingDecimals.toNumber();

@@ -70,6 +70,7 @@ import {
 import { getConfig } from '../../config';
 import { GLOBAL_DATA_V3 } from 'apollo/queries-v3';
 import { useDefaultCNTFarmList } from 'state/cnt/hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const web3 = new Web3('https://polygon-rpc.com/');
 
@@ -951,7 +952,7 @@ export function useCNTStakingInfo(
         new TokenAmount(item.tokens[1], '0'),
       );
       return lp && lp !== ''
-        ? new Token(137, lp, 18, 'SLP', 'Staked LP')
+        ? new Token(280, lp, 18, 'SLP', 'Staked LP')
         : dummyPair.liquidityToken;
     }),
   );
@@ -1418,7 +1419,7 @@ export function useOldLairInfo(): LairInfo | undefined {
   const lairContract = useLairContract();
   const quickContract = useQUICKContract();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const lairAddress = LAIR_ADDRESS[chainIdToUse];
   const quickToken = OLD_QUICK[chainIdToUse];
   const dQuickToken = OLD_DQUICK[chainIdToUse];
@@ -1436,7 +1437,7 @@ export function useNewLairInfo(): LairInfo | undefined {
   const lairContract = useNewLairContract();
   const quickContract = useNewQUICKContract();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const lairAddress = NEW_LAIR_ADDRESS[chainIdToUse];
   const quickToken = DLQUICK[chainIdToUse];
   const dQuickToken = DLDQUICK[chainIdToUse];
@@ -1637,7 +1638,7 @@ export function useStakingInfo(
         new TokenAmount(item.tokens[1], '0'),
       );
       return lp && lp !== ''
-        ? new Token(137, lp, 18, 'SLP', 'Staked LP')
+        ? new Token(280, lp, 18, 'SLP', 'Staked LP')
         : dummyPair.liquidityToken;
     }),
   );
@@ -1952,11 +1953,11 @@ export function useOldStakingInfo(
 
 export function useDQUICKtoQUICK() {
   const { chainId } = useActiveWeb3React();
-  let chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  let chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const config = getConfig(chainIdToUse);
   const oldLair = config['lair']['oldLair'];
 
-  chainIdToUse = oldLair ? chainIdToUse : ChainId.MATIC;
+  chainIdToUse = oldLair ? chainIdToUse : DEFAULT_CHAIN_ID;
   const lair = useLairContract(chainIdToUse);
 
   const inputs = ['1000000000000000000'];
@@ -1984,7 +1985,7 @@ export function useDerivedSyrupInfo(
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(
     chainIdToUse,
     typedValue,
@@ -2022,7 +2023,7 @@ export function useDerivedStakeInfo(
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(
     chainIdToUse,
     typedValue,
@@ -2059,7 +2060,7 @@ export function useDerivedLairInfo(
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(
     chainIdToUse,
     typedValue,
@@ -2096,7 +2097,7 @@ export function useDerivedUnstakeInfo(
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(
     chainIdToUse,
     typedValue,
@@ -2131,7 +2132,7 @@ export function useDerivedUnstakeLairInfo(
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const parsedInput: CurrencyAmount | undefined = tryParseAmount(
     chainIdToUse,

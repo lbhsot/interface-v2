@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useDefaultFarmList } from 'state/farms/hooks';
 import { ChainId } from 'sdk/uniswap';
 import useParsedQueryString from 'hooks/useParsedQueryString';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const FarmRewards: React.FC<{ bulkPairs: any }> = ({ bulkPairs }) => {
   const parsedQuery = useParsedQueryString();
@@ -19,7 +20,7 @@ const FarmRewards: React.FC<{ bulkPairs: any }> = ({ bulkPairs }) => {
   const { t } = useTranslation();
   const { breakpoints } = useTheme();
   const { chainId } = useActiveWeb3React();
-  const defaultChainId = chainId ?? ChainId.MATIC;
+  const defaultChainId = chainId ?? DEFAULT_CHAIN_ID;
   const isMobile = useMediaQuery(breakpoints.down('xs'));
 
   const farmData = useUSDRewardsandFees(

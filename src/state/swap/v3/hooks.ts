@@ -39,6 +39,7 @@ import {
 import { WrappedTokenInfo } from 'state/lists/v3/wrappedTokenInfo';
 import { StableCoins } from 'constants/v3/addresses';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../../sdk/uniswap/constants';
 
 export function useSwapState(): AppState['swapV3'] {
   return useAppSelector((state) => {
@@ -152,7 +153,7 @@ export function useDerivedSwapInfo(): {
   allowedSlippage: Percent;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const {
     independentField,

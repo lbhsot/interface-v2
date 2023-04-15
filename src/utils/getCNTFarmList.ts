@@ -2,6 +2,7 @@ import { fetchFarms, IFarmRewardsData, IFullFarm } from '@cryption/df-sdk-core';
 import { ChainId } from 'sdk/uniswap';
 import { CNTFarmListInfo, StakingRaw } from 'types';
 import Web3 from 'web3';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 const web3 = new Web3();
 const TOKEN_PREFS = [
@@ -105,7 +106,7 @@ export default async function getCNTFarmList(
   };
 
   return fetchFarms(
-    chainId || ChainId.MATIC,
+    chainId || DEFAULT_CHAIN_ID,
     1,
     null,
     account || undefined,

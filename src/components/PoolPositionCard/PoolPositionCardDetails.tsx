@@ -9,6 +9,7 @@ import { useTotalSupply } from 'data/TotalSupply';
 import { CurrencyLogo, RemoveLiquidityModal } from 'components';
 import { currencyId, formatTokenAmount } from 'utils';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const PoolPositionCardDetails: React.FC<{ pair: Pair }> = ({ pair }) => {
   const { t } = useTranslation();
@@ -106,10 +107,10 @@ const PoolPositionCardDetails: React.FC<{ pair: Pair }> = ({ pair }) => {
               history.push(
                 `/pools/v2?currency0=${currencyId(
                   currency0,
-                  chainId ? chainId : ChainId.MATIC,
+                  chainId ? chainId : DEFAULT_CHAIN_ID,
                 )}&currency1=${currencyId(
                   currency1,
-                  chainId ? chainId : ChainId.MATIC,
+                  chainId ? chainId : DEFAULT_CHAIN_ID,
                 )}`,
               );
             }}

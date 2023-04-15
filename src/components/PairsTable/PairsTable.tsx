@@ -14,6 +14,7 @@ import { useSelectedTokenList } from 'state/lists/hooks';
 import { useActiveWeb3React, useAnalyticsVersion } from 'hooks';
 import 'components/styles/AnalyticsTable.scss';
 import FarmingAPRTooltip from 'components/FarmingAPRTooltip';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface PairsTableProps {
   data: any[];
@@ -26,7 +27,7 @@ const PairTable: React.FC<PairsTableProps> = ({
 }) => {
   const { t } = useTranslation();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const version = useAnalyticsVersion();
   const liquidityHeadCellIndex = version === 'total' ? 2 : 1;
 

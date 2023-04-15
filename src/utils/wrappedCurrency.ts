@@ -15,12 +15,13 @@ import {
 } from '@uniswap/sdk-core';
 import { WMATIC_EXTENDED } from 'constants/v3/addresses';
 import { WrappedTokenInfo } from 'state/lists/v3/wrappedTokenInfo';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export function wrappedCurrency(
   currency: Currency | undefined,
   chainId: ChainId | undefined,
 ): Token | undefined {
-  return chainId && currency === ETHER[chainId ? chainId : ChainId.MATIC]
+  return chainId && currency === ETHER[chainId ? chainId : DEFAULT_CHAIN_ID]
     ? WETH[chainId]
     : currency instanceof Token && currency.chainId === chainId
     ? currency
@@ -32,7 +33,7 @@ export function wrappedCurrencyV3(
   chainId: ChainId | undefined,
 ): TokenV3 | undefined {
   return currency?.isNative
-    ? WMATIC_EXTENDED[chainId ?? ChainId.MATIC]
+    ? WMATIC_EXTENDED[chainId ?? DEFAULT_CHAIN_ID]
     : currency instanceof WrappedTokenInfo
     ? currency
     : currency instanceof TokenV3

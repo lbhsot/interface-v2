@@ -40,6 +40,7 @@ import { CHAIN_INFO } from 'constants/v3/chains';
 import { ChainId } from 'sdk/uniswap';
 import { useTranslation } from 'react-i18next';
 import { GlobalConst } from 'constants/index';
+import { DEFAULT_CHAIN_ID } from '../../../../sdk/uniswap/constants';
 
 export function SupplyLiquidityV3() {
   const { t } = useTranslation();
@@ -47,7 +48,7 @@ export function SupplyLiquidityV3() {
   const params: any = useParams();
   const parsedQuery = useParsedQueryString();
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const chainInfo = CHAIN_INFO[chainIdToUse];
   const currencyIdAParam =
     params && params.currencyIdA
@@ -135,16 +136,12 @@ export function SupplyLiquidityV3() {
       currencyNew: Currency,
       currencyIdOther?: string,
     ): (string | undefined)[] => {
-      const currencyIdNew = currencyId(currencyNew, chainId || 137);
+      const currencyIdNew = currencyId(currencyNew, chainId || 280);
 
-      let chainSymbol;
-
-      if (chainId === ChainId.MATIC) {
-        chainSymbol = 'MATIC';
-      }
-      if (chainId === ChainId.ZK_ERA || chainId === ChainId.ZK_ERA_TESTNET) {
-        chainSymbol = 'ETH';
-      }
+      const chainSymbol = 'ETH';
+      // if (chainId === ChainId.ZK_ERA || chainId === ChainId.ZK_ERA_TESTNET) {
+      //   chainSymbol = 'ETH';
+      // }
 
       resetState();
 

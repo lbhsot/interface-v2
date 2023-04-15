@@ -55,6 +55,7 @@ import { useHistory } from 'react-router-dom';
 import { useAllTokens, useCurrency } from 'hooks/Tokens';
 import useParsedQueryString from 'hooks/useParsedQueryString';
 import useSwapRedirects from 'hooks/useSwapRedirect';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const Swap: React.FC<{
   currencyBgClass?: string;
@@ -98,7 +99,7 @@ const Swap: React.FC<{
 
   const { t } = useTranslation();
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const { independentField, typedValue, recipient, swapDelay } = useSwapState();
   const {
     v1Trade,

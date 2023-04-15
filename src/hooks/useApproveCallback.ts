@@ -31,6 +31,7 @@ import {
 } from 'constants/v3/addresses';
 import { OptimalRate } from '@paraswap/sdk';
 import { ONE } from 'v3lib/utils';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export enum ApprovalState {
   UNKNOWN,
@@ -45,7 +46,7 @@ export function useApproveCallback(
   spender?: string,
 ): [ApprovalState, () => Promise<void>] {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const token =
     amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined;

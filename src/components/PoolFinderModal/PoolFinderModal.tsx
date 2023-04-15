@@ -17,6 +17,7 @@ import { ReactComponent as CloseIcon } from 'assets/images/CloseIcon.svg';
 import { Link } from 'react-router-dom';
 import 'components/styles/PoolFinderModal.scss';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 enum Fields {
   TOKEN0 = 0,
@@ -34,7 +35,7 @@ const PoolFinderModal: React.FC<PoolFinderModalProps> = ({ open, onClose }) => {
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [activeField, setActiveField] = useState<number>(Fields.TOKEN1);
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const [currency0, setCurrency0] = useState<Currency | null>(nativeCurrency);
   const [currency1, setCurrency1] = useState<Currency | null>(null);
@@ -153,10 +154,10 @@ const PoolFinderModal: React.FC<PoolFinderModalProps> = ({ open, onClose }) => {
                   <Link
                     to={`/pools?currency0=${currencyId(
                       currency0,
-                      chainId ? chainId : ChainId.MATIC,
+                      chainId ? chainId : DEFAULT_CHAIN_ID,
                     )}&currency1=${currencyId(
                       currency1,
-                      chainId ? chainId : ChainId.MATIC,
+                      chainId ? chainId : DEFAULT_CHAIN_ID,
                     )}`}
                     className='text-primary no-decoration'
                     onClick={onClose}
@@ -171,10 +172,10 @@ const PoolFinderModal: React.FC<PoolFinderModalProps> = ({ open, onClose }) => {
                 <Link
                   to={`/pools?currency0=${currencyId(
                     currency0,
-                    chainId ? chainId : ChainId.MATIC,
+                    chainId ? chainId : DEFAULT_CHAIN_ID,
                   )}&currency1=${currencyId(
                     currency1,
-                    chainId ? chainId : ChainId.MATIC,
+                    chainId ? chainId : DEFAULT_CHAIN_ID,
                   )}`}
                   className='text-primary no-decoration'
                   onClick={onClose}

@@ -22,6 +22,7 @@ import { tryParseAmount } from 'state/swap/hooks';
 import { useCurrencyBalances } from 'state/wallet/hooks';
 import { useCurrency } from 'hooks/Tokens';
 import { Field, typeInput, selectCurrency } from './actions';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const ZERO = JSBI.BigInt(0);
 
@@ -43,7 +44,7 @@ export function useDerivedMintInfo(): {
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const {
     independentField,

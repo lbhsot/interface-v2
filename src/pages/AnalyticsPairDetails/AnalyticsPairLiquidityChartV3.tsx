@@ -54,13 +54,13 @@ const AnalyticsPairLiquidityChartV3: React.FC<{
   // parsed tokens
   const _token0 = useMemo(() => {
     return pairData && formattedAddress0 && formattedAddress1
-      ? new Token(137, formattedAddress0, +pairData.token0.decimals)
+      ? new Token(280, formattedAddress0, +pairData.token0.decimals)
       : undefined;
   }, [formattedAddress0, formattedAddress1, pairData]);
 
   const _token1 = useMemo(() => {
     return pairData && formattedAddress0 && formattedAddress1
-      ? new Token(137, formattedAddress1, +pairData.token1.decimals)
+      ? new Token(280, formattedAddress1, +pairData.token1.decimals)
       : undefined;
   }, [formattedAddress0, formattedAddress1, pairData]);
 

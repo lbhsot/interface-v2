@@ -11,6 +11,7 @@ import { GlobalValue } from 'constants/index';
 import { updateV3Stake } from './actions';
 import { FarmingType } from 'models/enums';
 import { OLD_DQUICK } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export class WrappedStakingInfo implements StakingBasic {
   public readonly stakingInfo: StakingRaw;
@@ -84,7 +85,6 @@ export type StakingInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: StakingInfoAddressMap = {
-  [ChainId.MATIC]: {},
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
 };
@@ -108,7 +108,7 @@ export function listToFarmMap(
         stakingInfo,
         tokenAddressMap,
         farmTokens,
-        ChainId.MATIC,
+        DEFAULT_CHAIN_ID,
       );
       if (
         stakingInfoMap[wrappedStakingInfo.chainId][
@@ -149,7 +149,7 @@ export function useFarmList(url: string | undefined): StakingInfoAddressMap {
           ])
           .flat()
           .filter((item) => !!item)
-          .filter((address) => !tokenMap[ChainId.MATIC][address])
+          .filter((address) => !tokenMap[DEFAULT_CHAIN_ID][address])
           .filter(
             (address) =>
               !Object.values(GlobalValue.tokens.COMMON).find(

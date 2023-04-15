@@ -16,7 +16,6 @@ import {
   CustomSwitch,
 } from 'components';
 import {
-  useLairDQUICKAPY,
   getPageItemsToLoad,
   getTokenAPRSyrup,
   returnFullWidthMobile,
@@ -28,6 +27,7 @@ import { Skeleton } from '@material-ui/lab';
 import { useTranslation } from 'react-i18next';
 import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const LOADSYRUP_COUNT = 10;
 const TOKEN_COLUMN = 1;
@@ -52,9 +52,7 @@ const DragonsSyrup: React.FC = () => {
     setSyrupSearch,
   );
 
-  const lairInfo = useOldLairInfo();
-  const dQUICKAPY = useLairDQUICKAPY(false, lairInfo);
-  const chainIdOrDefault = chainId ?? ChainId.MATIC;
+  const chainIdOrDefault = chainId ?? DEFAULT_CHAIN_ID;
   const addedStakingSyrupInfos = useFilteredSyrupInfo(
     chainIdOrDefault,
     null,
@@ -302,7 +300,8 @@ const DragonsSyrup: React.FC = () => {
       )}
       {syrupInfos ? (
         syrupInfos.map((syrup, ind) => (
-          <SyrupCard key={ind} syrup={syrup} dQUICKAPY={dQUICKAPY} />
+          <div key={ind} />
+          // <SyrupCard key={ind} syrup={syrup} dQUICKAPY={dQUICKAPY} />
         ))
       ) : (
         <>

@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useEthPrice, useMaticPrice } from 'state/application/hooks';
 import { useActiveWeb3React } from 'hooks';
 import { getTokenInfoV3 } from 'utils/v3-graph';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SwapProInfo: React.FC<{
   token1?: Token;
@@ -28,7 +29,7 @@ const SwapProInfo: React.FC<{
   const { ethPrice } = useEthPrice();
   const { maticPrice } = useMaticPrice();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   useEffect(() => {
     (async () => {

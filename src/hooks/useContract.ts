@@ -183,13 +183,7 @@ export function useWETHContract(
 
 export function useArgentWalletDetectorContract(): Contract | null {
   const { chainId } = useActiveWeb3React();
-  return useContract(
-    chainId === ChainId.MATIC
-      ? ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
-      : undefined,
-    ARGENT_WALLET_DETECTOR_ABI,
-    false,
-  );
+  return useContract(undefined, ARGENT_WALLET_DETECTOR_ABI, false);
 }
 
 export function useENSRegistrarContract(
@@ -197,13 +191,6 @@ export function useENSRegistrarContract(
 ): Contract | null {
   const { chainId } = useActiveWeb3React();
   let address: string | undefined;
-  if (chainId) {
-    switch (chainId) {
-      case ChainId.MATIC:
-        address = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'; //TODO: MATIC
-        break;
-    }
-  }
   return useContract(address, ENS_ABI, withSignerIfPossible);
 }
 
@@ -265,11 +252,7 @@ export function useDualRewardsStakingContract(
 
 export function useSocksController(): Contract | null {
   const { chainId } = useActiveWeb3React();
-  return useContract(
-    chainId === ChainId.MATIC ? undefined : undefined,
-    UNISOCKS_ABI,
-    false,
-  );
+  return useContract(undefined, UNISOCKS_ABI, false);
 }
 
 export function useRouterContract(): Contract | null {

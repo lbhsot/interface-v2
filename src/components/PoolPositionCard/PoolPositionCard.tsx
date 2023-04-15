@@ -14,12 +14,13 @@ import PoolPositionCardDetails from './PoolPositionCardDetails';
 import 'components/styles/PoolPositionCard.scss';
 import { Trans, useTranslation } from 'react-i18next';
 import { useActiveWeb3React } from 'hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const PoolPositionCard: React.FC<{ pair: Pair }> = ({ pair }) => {
   const { t } = useTranslation();
   const { chainId } = useActiveWeb3React();
   const [bulkPairData, setBulkPairData] = useState<any>(null);
-  const chainIdOrDefault = chainId ?? ChainId.MATIC;
+  const chainIdOrDefault = chainId ?? DEFAULT_CHAIN_ID;
   const currency0 = unwrappedToken(pair.token0);
   const currency1 = unwrappedToken(pair.token1);
 

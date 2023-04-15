@@ -66,13 +66,6 @@ export function currencyEquals(
 }
 
 export const WETH = {
-  [ChainId.MATIC]: new Token(
-    ChainId.MATIC,
-    '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
-    18,
-    'WMATIC',
-    'Wrapped Matic',
-  ),
   [ChainId.ZK_ERA_TESTNET]: new Token(
     ChainId.ZK_ERA_TESTNET,
     '0x3B85380Cd7b6FB2ebe112289CA486e9Ad9b6c7F6',
@@ -81,7 +74,7 @@ export const WETH = {
     'Wrapped ETH',
   ),
   [ChainId.ZK_ERA]: new Token(
-    ChainId.MATIC,
+    ChainId.ZK_ERA,
     '0x3B85380Cd7b6FB2ebe112289CA486e9Ad9b6c7F6', // fixme
     18,
     'WETH',

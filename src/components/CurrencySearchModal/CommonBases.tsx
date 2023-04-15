@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { SUGGESTED_BASES, WMATIC_EXTENDED } from 'constants/v3/addresses';
 import { useIsV2 } from 'state/application/hooks';
 import { NativeCurrency } from '@uniswap/sdk-core';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface CommonBasesProps {
   chainId?: ChainId;
@@ -20,7 +21,7 @@ const CommonBases: React.FC<CommonBasesProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const { isV2 } = useIsV2();
   const nativeCurrency = isV2
     ? ETHER[chainIdToUse]

@@ -9,6 +9,7 @@ import { useActiveWeb3React } from 'hooks';
 import { useBytes32TokenContract, useTokenContract } from './useContract';
 import { useSelectedTokenList } from 'state/lists/hooks';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 // parse a name or symbol from a token response
 const BYTES32_REGEX = /^0x[a-fA-F0-9]{64}$/;
@@ -43,7 +44,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 
   let token: Token | undefined = undefined;
   if (address) {
-    const chainIdOrDefault = chainId ?? ChainId.MATIC;
+    const chainIdOrDefault = chainId ?? DEFAULT_CHAIN_ID;
     const oldToken = tokens[chainIdOrDefault][address];
     if (oldToken) {
       token = new Token(

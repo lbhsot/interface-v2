@@ -22,12 +22,13 @@ import { unwrappedToken } from 'utils/wrappedCurrency';
 import { getIntervalTokenDataV3, getTokenInfoV3 } from 'utils/v3-graph';
 import { useActiveWeb3React } from 'hooks';
 import { getConfig } from 'config';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SwapTokenDetailsHorizontal: React.FC<{
   token: Token;
 }> = ({ token }) => {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const currency = unwrappedToken(token);
   const tokenAddress = token.address;
   const { palette } = useTheme();

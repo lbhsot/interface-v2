@@ -7,6 +7,7 @@ import { getTokenFromAddress } from 'utils';
 import { TokenAddressMap, useSelectedTokenList } from 'state/lists/hooks';
 import { useTokens } from 'hooks/Tokens';
 import { GlobalValue } from 'constants/index';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export class WrappedDualFarmInfo implements DualStakingBasic {
   public readonly stakingInfo: DualStakingRaw;
@@ -95,7 +96,6 @@ export type DualFarmInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: DualFarmInfoAddressMap = {
-  [ChainId.MATIC]: {},
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
 };
@@ -119,7 +119,7 @@ export function listToDualFarmMap(
         stakingInfo,
         tokenAddressMap,
         dualFarmTokens,
-        ChainId.MATIC,
+        DEFAULT_CHAIN_ID,
       );
       if (
         stakingInfoMap[wrappedStakingInfo.chainId][
@@ -163,7 +163,7 @@ export function useDualFarmList(
           ])
           .flat()
           .filter((item) => !!item)
-          .filter((address) => !tokenMap[ChainId.MATIC][address])
+          .filter((address) => !tokenMap[DEFAULT_CHAIN_ID][address])
           .filter(
             (address) =>
               !Object.values(GlobalValue.tokens.COMMON).find(

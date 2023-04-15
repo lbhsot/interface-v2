@@ -11,6 +11,7 @@ import SwapProChartTrade from './SwapProChartTrade';
 import SwapProInfo from './SwapProInfo';
 import SwapProTransactions from './SwapProTransactions';
 import TickerWidget from './TickerWidget';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const Item = styled(Box)(({ theme }) => ({
   ...theme.typography.body2,
@@ -32,7 +33,7 @@ const SwapProMain: React.FC<SwapProMainProps> = ({
   pairTokenReversed,
 }) => {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const { isV2 } = useIsV2();
   const [transactions, setTransactions] = useState<any[] | undefined>(
     undefined,

@@ -5,13 +5,14 @@ import { fetchPoolData, PoolData } from '../../utils/marketxyz/fetchPoolData';
 import { PoolDirectoryV1 } from 'market-sdk';
 import { useEthPrice } from 'state/application/hooks';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export const usePoolsData = (
   poolAddresses: string[],
   directory: PoolDirectoryV1 | string,
 ) => {
   const { chainId, account } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const { sdk } = useReadOnlyMarket();
   const { ethPrice } = useEthPrice();
   const _directory = sdk
@@ -53,7 +54,7 @@ export const usePoolData = (
   directory: PoolDirectoryV1 | string,
 ): PoolData | undefined => {
   const { chainId, account } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const { sdk } = useReadOnlyMarket();
   const { ethPrice } = useEthPrice();
   const _directory = sdk

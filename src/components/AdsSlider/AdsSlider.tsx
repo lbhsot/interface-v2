@@ -31,7 +31,7 @@ const AdsSlider: React.FC<AdsSliderProps> = ({ sort }) => {
     arrows: false,
   };
 
-  return ads ? (
+  return false ? (
     <Slider {...adsSliderSettings}>
       {ads.map((item, ind) => (
         <a

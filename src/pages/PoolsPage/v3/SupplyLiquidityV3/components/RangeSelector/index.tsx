@@ -21,6 +21,7 @@ import { USDC } from 'constants/v3/addresses';
 import { ChainId } from 'sdk/uniswap';
 import { useActiveWeb3React } from 'hooks';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../../../../../sdk/uniswap/constants';
 
 interface IRangeSelector {
   priceLower: Price<Token, Token> | undefined;
@@ -173,7 +174,7 @@ function RangePart({
   }, [priceFormat]);
 
   const USDC_TOKEN = toToken(
-    USDC[tokenA?.chainId ? tokenA.chainId : chainId ?? ChainId.MATIC],
+    USDC[tokenA?.chainId ? tokenA.chainId : chainId ?? DEFAULT_CHAIN_ID],
   );
   const valueUSD = useUSDCValue(
     tryParseAmount(

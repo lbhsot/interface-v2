@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
 import { DLDQUICK, OLD_DQUICK } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const web3 = new Web3();
 
@@ -41,7 +42,7 @@ const UnstakeQuickModal: React.FC<UnstakeQuickModalProps> = ({
   const [stakePercent, setStakePercent] = useState(0);
 
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const dQuickToken = isNew ? DLDQUICK[chainIdToUse] : OLD_DQUICK[chainIdToUse];
 
   const lairContract = useLairContract();

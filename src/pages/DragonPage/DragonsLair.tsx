@@ -3,7 +3,7 @@ import { Box } from '@material-ui/core';
 import { useOldLairInfo, useNewLairInfo } from 'state/stake/hooks';
 import { CurrencyLogo, StakeQuickModal, UnstakeQuickModal } from 'components';
 import { ReactComponent as PriceExchangeIcon } from 'assets/images/PriceExchangeIcon.svg';
-import { formatTokenAmount, useLairDQUICKAPY } from 'utils';
+import { formatTokenAmount } from 'utils';
 import { useUSDCPriceFromAddress } from 'utils/useUSDCPrice';
 import { useTranslation } from 'react-i18next';
 import { useActiveWeb3React } from 'hooks';
@@ -14,10 +14,11 @@ import {
   OLD_DQUICK,
   OLD_QUICK,
 } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const DragonsLair: React.FC<{ isNew: boolean }> = ({ isNew }) => {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
 
   const quickToken = isNew ? DLQUICK[chainIdToUse] : OLD_QUICK[chainIdToUse];
   const dQuickToken = isNew ? DLDQUICK[chainIdToUse] : OLD_DQUICK[chainIdToUse];
@@ -28,7 +29,6 @@ const DragonsLair: React.FC<{ isNew: boolean }> = ({ isNew }) => {
   const lairInfo = useOldLairInfo();
   const newLairInfo = useNewLairInfo();
   const lairInfoToUse = isNew ? newLairInfo : lairInfo;
-  const APY = useLairDQUICKAPY(isNew, lairInfoToUse);
   const dQUICKtoQUICK = lairInfoToUse?.dQUICKtoQUICK?.toFixed(4, {
     groupSeparator: ',',
   });
@@ -83,13 +83,6 @@ const DragonsLair: React.FC<{ isNew: boolean }> = ({ isNew }) => {
             : 0}
         </small>
       </Box>
-
-      {isNew && (
-        <Box className='dragonLairRow'>
-          <small>{t('apy')}</small>
-          <small className='text-success'> {APY}%</small>
-        </Box>
-      )}
 
       <Box className='dragonLairRow'>
         <small>{t('yourdeposits')}</small>

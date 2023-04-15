@@ -51,6 +51,7 @@ import { useCurrency } from 'hooks/Tokens';
 import { useParams } from 'react-router-dom';
 import { NEW_QUICK, V2_ROUTER_ADDRESS } from 'constants/v3/addresses';
 import usePoolsRedirect from 'hooks/usePoolsRedirect';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const AddLiquidity: React.FC<{
   currencyBgClass?: string;
@@ -61,7 +62,7 @@ const AddLiquidity: React.FC<{
   >(null);
 
   const { account, chainId, library } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = Token.ETHER[chainIdToUse];
 
   const [showConfirm, setShowConfirm] = useState(false);

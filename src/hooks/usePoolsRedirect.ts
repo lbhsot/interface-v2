@@ -4,11 +4,12 @@ import { useHistory, useParams } from 'react-router-dom';
 import useParsedQueryString from './useParsedQueryString';
 import { NEW_QUICK_ADDRESS } from 'constants/v3/addresses';
 import { useActiveWeb3React } from 'hooks';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export default function usePoolsRedirect() {
   const history = useHistory();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const params: any = useParams();
   const currentPath = history.location.pathname + history.location.search;
   const parsedQuery = useParsedQueryString();

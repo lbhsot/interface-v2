@@ -17,7 +17,6 @@ export class Currency {
    * The only instance of the base class `Currency`.
    */
   public static readonly ETHER = {
-    [ChainId.MATIC]: new Currency(18, 'ETH', 'Ethereum'),
     [ChainId.ZK_ERA]: new Currency(18, 'ETH', 'Ethereum'),
     [ChainId.ZK_ERA_TESTNET]: new Currency(18, 'ETH', 'Ethereum'),
   };
@@ -38,7 +37,6 @@ export class Currency {
 }
 
 const ETHER = {
-  [ChainId.MATIC]: Currency.ETHER[ChainId.MATIC],
   [ChainId.ZK_ERA]: Currency.ETHER[ChainId.ZK_ERA],
   [ChainId.ZK_ERA_TESTNET]: Currency.ETHER[ChainId.ZK_ERA_TESTNET],
 };

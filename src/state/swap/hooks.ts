@@ -40,6 +40,7 @@ import { computeSlippageAdjustedAmounts } from 'utils/prices';
 import { RouterTypes, SmartRouter } from 'constants/index';
 import { StableCoins } from 'constants/v3/addresses';
 import useFindBestRoute from 'hooks/useFindBestRoute';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap);
@@ -55,7 +56,7 @@ export function useSwapActionHandlers(): {
 } {
   const dispatch = useDispatch<AppDispatch>();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const timer = useRef<any>(null);
 
@@ -181,7 +182,7 @@ export function useDerivedSwapInfo(): {
   v1Trade: Trade | undefined;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const parsedQuery = useParsedQueryString();
   const swapType = parsedQuery ? parsedQuery.swapIndex : undefined;
 

@@ -6,11 +6,10 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { ChainId } from 'sdk/uniswap';
 import { DocumentNode } from 'graphql';
 import { ClientError, gql, GraphQLClient } from 'graphql-request';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 // List of supported subgraphs. Note that the app currently only support one active subgraph at a time
-const CHAIN_SUBGRAPH_URL: Record<number, string> = {
-  [ChainId.MATIC]: `${process.env.REACT_APP_GRAPH_V3_137_API_URL}`,
-};
+const CHAIN_SUBGRAPH_URL: Record<number, string> = {};
 
 export const api = createApi({
   reducerPath: 'dataApi',
@@ -88,7 +87,7 @@ function graphqlRequestBaseQuery(): BaseQueryFn<
     try {
       //TODO: Fix chainId to be grabbed from application state after ChainId is added To application
       // const chainId = (getState() as AppState).application?.chainId ?? ChainId.MATIC;
-      const chainId = ChainId.MATIC;
+      const chainId = DEFAULT_CHAIN_ID;
       const subgraphUrl = chainId ? CHAIN_SUBGRAPH_URL[chainId] : undefined;
 
       if (!subgraphUrl) {

@@ -7,6 +7,7 @@ import { TokenAddressMap, useSelectedTokenList } from 'state/lists/hooks';
 import { getTokenFromAddress } from 'utils';
 import { useTokens } from 'hooks/Tokens';
 import { GlobalValue } from 'constants/index';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export class WrappedSyrupInfo implements SyrupBasic {
   public readonly stakingInfo: SyrupRaw;
@@ -29,7 +30,7 @@ export class WrappedSyrupInfo implements SyrupBasic {
   ) {
     this.stakingInfo = syrupInfo;
     //TODO: Support Multichain
-    this.chainId = ChainId.MATIC;
+    this.chainId = DEFAULT_CHAIN_ID;
     this.stakingRewardAddress = syrupInfo.stakingRewardAddress;
     this.rate = syrupInfo.rate;
     this.ended = syrupInfo.ended;
@@ -70,7 +71,6 @@ export type SyrupInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: SyrupInfoAddressMap = {
-  [ChainId.MATIC]: {},
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
 };
@@ -94,7 +94,7 @@ export function listToSyrupMap(
         syrup,
         tokenAddressMap,
         syrupTokens,
-        ChainId.MATIC,
+        DEFAULT_CHAIN_ID,
       );
       if (
         syrupInfoMap[wrappedSyrupInfo.chainId][
@@ -129,7 +129,7 @@ export function useSyrupList(url: string | undefined): SyrupInfoAddressMap {
           .map((item) => [item.baseToken, item.token, item.stakingToken])
           .flat()
           .filter((item) => !!item)
-          .filter((address) => !tokenMap[ChainId.MATIC][address])
+          .filter((address) => !tokenMap[DEFAULT_CHAIN_ID][address])
           .filter(
             (address) =>
               !Object.values(GlobalValue.tokens.COMMON).find(

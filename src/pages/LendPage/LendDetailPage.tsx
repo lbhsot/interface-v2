@@ -48,13 +48,14 @@ import LendDetailAssetStats from './LendDetailAssetStats';
 import AdsSlider from 'components/AdsSlider';
 import { ChainId } from 'sdk/uniswap';
 import { MI, LENDING_QS_POOL_DIRECTORY } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const LendDetailPage: React.FC = () => {
   const { t } = useTranslation();
   const history = useHistory();
   const location = useLocation();
   const { chainId, account } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const [txLoading, setTxLoading] = useState(false);
   const [openTxModal, setOpenTxModal] = useState(false);
   const [txHash, setTxHash] = useState<string | undefined>(undefined);

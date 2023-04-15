@@ -234,11 +234,11 @@ const Header: React.FC = () => {
         confirmedTransactions={confirmed}
       />
       <Link to='/'>
-        <img
-          src={mobileWindowSize ? QuickIcon : QuickLogo}
-          alt='QuickLogo'
-          height={mobileWindowSize ? 40 : 60}
-        />
+        {/*<img*/}
+        {/*  src={mobileWindowSize ? QuickIcon : QuickLogo}*/}
+        {/*  alt='ZKDexLogo'*/}
+        {/*  height={mobileWindowSize ? 40 : 60}*/}
+        {/*/>*/}
       </Link>
       {!tabletWindowSize && (
         <Box className='mainMenu'>

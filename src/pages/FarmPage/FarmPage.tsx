@@ -19,6 +19,7 @@ import { useIsV2 } from 'state/application/hooks';
 import { getConfig } from '../../config';
 import useParsedQueryString from 'hooks/useParsedQueryString';
 import { useHistory } from 'react-router-dom';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const FarmPage: React.FC = () => {
   const { chainId } = useActiveWeb3React();
@@ -30,7 +31,7 @@ const FarmPage: React.FC = () => {
       : GlobalConst.v2FarmTab.LPFARM;
   const { t } = useTranslation();
   const [bulkPairs, setBulkPairs] = useState<any>(null);
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const config = getConfig(chainIdToUse);
   const farmAvailable = config['farm']['available'];
   const v3 = config['v3'];

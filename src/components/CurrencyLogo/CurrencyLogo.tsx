@@ -9,6 +9,7 @@ import { Logo } from 'components';
 import { getTokenLogoURL } from 'utils/getTokenLogoURL';
 import 'components/styles/CurrencyLogo.scss';
 import { useActiveWeb3React } from 'hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface CurrencyLogoProps {
   currency?: Currency;
@@ -24,7 +25,7 @@ const CurrencyLogo: React.FC<CurrencyLogoProps> = ({
   withoutBg,
 }) => {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const nativeCurrencyImage = '/' + currency?.symbol + '.png';
   const uriLocations = useHttpLocations(

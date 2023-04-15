@@ -18,6 +18,7 @@ import 'components/styles/AnalyticsTable.scss';
 import { useTranslation } from 'react-i18next';
 import { useSelectedTokenList } from 'state/lists/hooks';
 import { useActiveWeb3React } from 'hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface TokensTableProps {
   data: any[];
@@ -32,7 +33,7 @@ const TokensTable: React.FC<TokensTableProps> = ({
 }) => {
   const { t } = useTranslation();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const tokenMap = useSelectedTokenList();
   const { isV2 } = useIsV2();
   const version = useMemo(() => `${isV2 ? `v2` : 'v3'}`, [isV2]);

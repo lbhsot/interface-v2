@@ -22,6 +22,7 @@ import { useV3MintState } from 'state/mint/v3/hooks';
 import { GlobalConst } from 'constants/index';
 import { DoubleCurrencyLogo } from 'components';
 import { WMATIC_EXTENDED } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../../../../../sdk/uniswap/constants';
 
 interface ITokenAmountCard {
   currency: Currency | undefined | null;
@@ -53,7 +54,7 @@ export function TokenAmountCard({
   isBase,
 }: ITokenAmountCard) {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = {
     ...ETHER[chainIdToUse],
     isNative: true,

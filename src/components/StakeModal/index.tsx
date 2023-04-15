@@ -26,6 +26,7 @@ import { Skeleton } from '@material-ui/lab';
 import { Check } from '@material-ui/icons';
 import { useV3StakeData } from 'state/farms/hooks';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface FarmModalProps {
   event: {
@@ -68,7 +69,7 @@ export function FarmModal({
   farmingType,
 }: FarmModalProps) {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const { t } = useTranslation();
 
   const isTierFarming = useMemo(

@@ -46,6 +46,7 @@ import { ReactComponent as CloseIcon } from 'assets/images/CloseIcon.svg';
 import 'components/styles/RemoveLiquidityModal.scss';
 import { useTranslation } from 'react-i18next';
 import { V2_ROUTER_ADDRESS } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface RemoveLiquidityModalProps {
   currency0: Currency;
@@ -78,7 +79,7 @@ const RemoveLiquidityModal: React.FC<RemoveLiquidityModalProps> = ({
     ],
     [currency0, currency1, chainId],
   );
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const { independentField, typedValue } = useBurnState();
   const { pair, parsedAmounts, error } = useDerivedBurnInfo(

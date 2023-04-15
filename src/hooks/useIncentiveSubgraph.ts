@@ -52,6 +52,7 @@ import { useSelectedTokenList } from 'state/lists/v3/hooks';
 import { getV3TokenFromAddress } from 'utils';
 import { ChainId } from 'sdk/uniswap';
 import { formatTokenSymbol } from 'utils/v3-graph';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export function useFarmingSubgraph() {
   const { chainId, account, library } = useActiveWeb3React();
@@ -973,12 +974,12 @@ export function useFarmingSubgraph() {
           );
           const wrappedToken0 = getV3TokenFromAddress(
             pool.token0.id,
-            chainId ?? ChainId.MATIC,
+            chainId ?? DEFAULT_CHAIN_ID,
             tokenMap,
           );
           const wrappedToken1 = getV3TokenFromAddress(
             pool.token1.id,
-            chainId ?? ChainId.MATIC,
+            chainId ?? DEFAULT_CHAIN_ID,
             tokenMap,
           );
           const newPool = {

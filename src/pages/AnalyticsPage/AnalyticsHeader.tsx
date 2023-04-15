@@ -12,6 +12,7 @@ import { getConfig } from 'config';
 import { ChainId } from 'sdk/uniswap';
 import { useActiveWeb3React, useAnalyticsVersion } from 'hooks';
 import { useIsV2 } from 'state/application/hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface AnalyticHeaderProps {
   data?: any;
@@ -30,7 +31,7 @@ const AnalyticsHeader: React.FC<AnalyticHeaderProps> = ({
   const { t } = useTranslation();
   const { breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down('xs'));
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const config = getConfig(chainIdToUse);
   const v3 = config['v3'];
   const v2 = config['v2'];

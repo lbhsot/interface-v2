@@ -8,7 +8,7 @@ import { Box } from '@material-ui/core';
 import MetamaskIcon from 'assets/images/metamask.png';
 import BraveWalletIcon from 'assets/images/braveWalletIcon.png';
 import { ReactComponent as Close } from 'assets/images/CloseIcon.svg';
-import { fortmatic, injected, metamask, portis, safeApp } from 'connectors';
+import { injected, metamask, safeApp } from 'connectors';
 import { OVERLAY_READY } from 'connectors/Fortmatic';
 import { GlobalConst, SUPPORTED_WALLETS } from 'constants/index';
 import usePrevious from 'hooks/usePrevious';
@@ -204,13 +204,6 @@ const WalletModal: React.FC<WalletModalProps> = ({
         });
   };
 
-  // close wallet modal if fortmatic modal is active
-  useEffect(() => {
-    fortmatic.on(OVERLAY_READY, () => {
-      toggleWalletModal();
-    });
-  }, [toggleWalletModal]);
-
   // get wallets user can switch too, depending on device/browser
   function getOptions() {
     const { ethereum, web3, _oldMetaMask } = window as any;
@@ -235,10 +228,6 @@ const WalletModal: React.FC<WalletModalProps> = ({
       // check for mobile options
       if (isMobile) {
         //disable portis on mobile for now
-        if (option.connector === portis) {
-          return null;
-        }
-
         if (!web3 && !ethereum && option.mobile) {
           if (
             option.name === GlobalConst.walletName.BRAVEWALLET &&

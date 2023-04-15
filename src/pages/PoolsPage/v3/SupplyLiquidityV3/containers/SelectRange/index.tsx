@@ -29,6 +29,7 @@ import GammaLogo from 'assets/images/gammaLogo.png';
 import AutomaticImage from 'assets/images/automatic.svg';
 import AutomaticImageDark from 'assets/images/automaticDark.svg';
 import { Trans, useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../../../../../sdk/uniswap/constants';
 
 interface IRangeSelector {
   currencyA: Currency | null | undefined;
@@ -54,7 +55,7 @@ export function SelectRange({
     mintInfo.noLiquidity,
   );
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
 
   const dispatch = useAppDispatch();
   const activePreset = useActivePreset();

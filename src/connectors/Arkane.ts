@@ -6,12 +6,12 @@ import { Arkane } from '@arkane-network/web3-arkane-provider';
 import { ArkaneConnect, SecretType } from '@arkane-network/arkane-connect';
 import Web3 from 'web3';
 
-type ArkaneSupportedChains = Extract<ChainId, ChainId.MATIC>;
+type ArkaneSupportedChains = Extract<ChainId, ChainId.ZK_ERA>;
 
 const CHAIN_ID_NETWORK_ARGUMENT: {
   readonly [chainId in ArkaneSupportedChains]: string | undefined;
 } = {
-  [ChainId.MATIC]: 'matic',
+  [ChainId.ZK_ERA]: 'eth',
 };
 
 interface ArkaneConnectorArguments {

@@ -18,6 +18,7 @@ import {
   useMultipleContractSingleData,
 } from 'state/multicall/hooks';
 import { useIsV2 } from 'state/application/hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -171,7 +172,7 @@ export function useCurrencyBalances(
   currencies?: (Currency | undefined)[],
 ): (CurrencyAmount | undefined)[] {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
 
   const tokens = useMemo(

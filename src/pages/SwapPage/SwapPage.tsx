@@ -14,6 +14,7 @@ import { wrappedCurrency, wrappedCurrencyV3 } from 'utils/wrappedCurrency';
 import SwapDefaultMode from './SwapDefaultMode';
 import SwapPageHeader from './SwapPageHeader';
 import SwapProMain from './SwapProMain';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SwapPage: React.FC = () => {
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
@@ -25,7 +26,7 @@ const SwapPage: React.FC = () => {
   const { currencies } = useDerivedSwapInfo();
   const { currencies: currenciesV3 } = useDerivedSwapInfoV3();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const token1 = wrappedCurrency(currencies[Field.INPUT], chainIdToUse);
   const token2 = wrappedCurrency(currencies[Field.OUTPUT], chainIdToUse);
 

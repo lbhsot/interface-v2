@@ -11,6 +11,7 @@ import { ExtendedEther, WMATIC_EXTENDED } from 'constants/v3/addresses';
 import { TokenAddressMap, useSelectedTokenList } from 'state/lists/v3/hooks';
 import { ChainId } from 'sdk/uniswap';
 import { CHAIN_INFO } from 'constants/v3/chains';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(
@@ -185,7 +186,7 @@ export function useCurrency(
   currencyId: string | undefined,
 ): Currency | null | undefined {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const chainInfo = CHAIN_INFO[chainIdToUse];
 

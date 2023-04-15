@@ -8,6 +8,7 @@ import { TokenAddressMap, useSelectedTokenList } from 'state/lists/hooks';
 import { CNTFarmListInfo, StakingBasic, StakingRaw } from 'types';
 import { getTokenFromAddress } from 'utils';
 import { OLD_DQUICK } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export class WrappedCNTStakingInfo implements StakingBasic {
   public readonly stakingInfo: StakingRaw;
@@ -82,7 +83,6 @@ export type CNTFarmInfoAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: CNTFarmInfoAddressMap = {
-  [ChainId.MATIC]: {},
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
 };
@@ -151,7 +151,7 @@ export function useCNTFarmList(
           ])
           .flat()
           .filter((item) => !!item)
-          .filter((address) => !tokenMap[ChainId.MATIC][address])
+          .filter((address) => !tokenMap[DEFAULT_CHAIN_ID][address])
           .filter(
             (address) =>
               !Object.values(GlobalValue.tokens.COMMON).find(

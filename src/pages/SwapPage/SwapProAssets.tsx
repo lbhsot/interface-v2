@@ -27,13 +27,14 @@ import {
 } from 'utils';
 import useDebouncedChangeHandler from 'utils/useDebouncedChangeHandler';
 import { getTopTokensV3 } from 'utils/v3-graph';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SwapProAssets: React.FC = ({}) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const mobileWindowSize = useMediaQuery(theme.breakpoints.down('xs'));
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const inputRef = useRef<HTMLInputElement>();
   const handleInput = useCallback((input: string) => {
@@ -194,11 +195,11 @@ const SwapProAssets: React.FC = ({}) => {
   const mobileHTML = (token: any, index: number) => {
     const tokenCurrency = getTokenFromAddress(
       token.id,
-      ChainId.MATIC,
+      DEFAULT_CHAIN_ID,
       tokenMap,
       [
         new Token(
-          ChainId.MATIC,
+          DEFAULT_CHAIN_ID,
           getAddress(token.id),
           Number(token.decimals),
           token.symbol,
@@ -245,11 +246,11 @@ const SwapProAssets: React.FC = ({}) => {
   const desktopHTML = (token: any) => {
     const tokenCurrency = getTokenFromAddress(
       token.id,
-      ChainId.MATIC,
+      DEFAULT_CHAIN_ID,
       tokenMap,
       [
         new Token(
-          ChainId.MATIC,
+          DEFAULT_CHAIN_ID,
           getAddress(token.id),
           Number(token.decimals),
           token.symbol,

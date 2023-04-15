@@ -12,7 +12,7 @@ import JSBI from 'jsbi';
 import { V2_FACTORY_ADDRESSES } from 'constants/v3/addresses';
 import { ChainId } from 'sdk/uniswap';
 
-export const FACTORY_ADDRESS = V2_FACTORY_ADDRESSES[ChainId.MATIC];
+export const FACTORY_ADDRESS = V2_FACTORY_ADDRESSES[DEFAULT_CHAIN_ID];
 export const INIT_CODE_HASH =
   '0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f';
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000);
@@ -29,6 +29,7 @@ import {
   EXCHANGE_PAIR_INIT_HASH_MAPS,
   V2Exchanges,
 } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 type ExchangeDetails = {
   [exchange in V2Exchanges]: { decimals: number; symbol: string; name: string };
@@ -74,8 +75,8 @@ export const computePairAddress = ({
   tokenB: Token;
   exchange: V2Exchanges;
 }): string => {
-  const factoryAddress = EXCHANGE_FACTORY_ADDRESS_MAPS[exchange][137];
-  const initHash = EXCHANGE_PAIR_INIT_HASH_MAPS[exchange][137];
+  const factoryAddress = EXCHANGE_FACTORY_ADDRESS_MAPS[exchange][280];
+  const initHash = EXCHANGE_PAIR_INIT_HASH_MAPS[exchange][280];
   const [token0, token1] = tokenA.sortsBefore(tokenB)
     ? [tokenA, tokenB]
     : [tokenB, tokenA]; // does safety checks

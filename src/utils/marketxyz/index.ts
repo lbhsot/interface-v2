@@ -10,6 +10,7 @@ import {
 } from './errors';
 import { GlobalValue } from 'constants/index';
 import { BigNumber } from 'ethers';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export const convertMantissaToAPY = (mantissa: any, dayRange: number) => {
   return (
@@ -34,7 +35,7 @@ export const getPoolAssetToken = (
   chainId?: ChainId,
 ) => {
   return new Token(
-    chainId ?? ChainId.MATIC,
+    chainId ?? DEFAULT_CHAIN_ID,
     asset.underlyingToken,
     Number(asset.underlyingDecimals),
     asset.underlyingSymbol,

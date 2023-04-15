@@ -25,6 +25,7 @@ import Badge from 'components/v3/Badge';
 import PositionListItemDetails from '../PositionListItemDetails';
 import { ChainId } from 'sdk/uniswap';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../../../../../sdk/uniswap/constants';
 
 interface PositionListItemProps {
   positionDetails: PositionPool;
@@ -47,7 +48,7 @@ export function getPriceOrderingFromPositionForUI(
   }
   const chainIdToUse = position.pool.token0.chainId
     ? position.pool.token0.chainId
-    : ChainId.MATIC;
+    : DEFAULT_CHAIN_ID;
 
   const token0 = position.amount0.currency;
   const token1 = position.amount1.currency;

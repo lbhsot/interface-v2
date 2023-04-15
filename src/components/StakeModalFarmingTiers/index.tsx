@@ -18,6 +18,7 @@ import MasterTierIcon from '../../assets/images/master-tier-icon.png';
 import ProfessorTierIcon from '../../assets/images/professor-tier-icon.png';
 import { ChainId } from 'sdk/uniswap';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface StakeModalFarmingTiersProps {
   tiersLimits: {
@@ -41,7 +42,7 @@ export default function StakeModalFarmingTiers({
   multiplierToken,
 }: StakeModalFarmingTiersProps) {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const { t } = useTranslation();
 
   const [selectedTier, setSelectedTier] = useState<number | undefined>(0);

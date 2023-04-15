@@ -14,6 +14,7 @@ import { formatTokenAmount } from 'utils';
 import { toV3Token } from 'constants/v3/addresses';
 import { useIsV2 } from 'state/application/hooks';
 import { WrappedTokenInfo } from 'state/lists/v3/wrappedTokenInfo';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export enum WrapType {
   NOT_APPLICABLE,
@@ -39,7 +40,7 @@ export default function useWrapCallback(
 } {
   const { isV2 } = useIsV2();
   const { chainId, account } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   const wethContract = useWETHContract();
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency);

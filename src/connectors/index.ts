@@ -17,6 +17,7 @@ import {
 import { MetaMaskConnector } from './MetaMaskConnector';
 import { ChainId } from 'sdk/uniswap';
 import { PhantomWalletConnector } from './PhantomWalletConnector';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 const POLLING_INTERVAL = 12000;
 
@@ -32,10 +33,6 @@ export type NetworkInfoChainMap = Readonly<
 >;
 
 export const networkInfoMap: NetworkInfoChainMap = {
-  [ChainId.MATIC]: {
-    rpcUrl: 'https://polygon-rpc.com/',
-    scanUrl: 'https://polygonscan.com/',
-  },
   [ChainId.ZK_ERA]: {
     rpcUrl: 'https://mainnet.era.zksync.io',
     scanUrl: 'https://explorer.zksync.io/',
@@ -54,18 +51,17 @@ const PORTIS_ID = process.env.REACT_APP_PORTIS_ID;
 const MAINNET_NETWORK_URL = process.env.REACT_APP_MAINNET_NETWORK_URL;
 
 export const NETWORK_CHAIN_ID: number = parseInt(
-  process.env.REACT_APP_CHAIN_ID ?? '137',
+  process.env.REACT_APP_CHAIN_ID ?? '280',
 );
 
 export const rpcMap = {
-  [ChainId.MATIC]: networkInfoMap[ChainId.MATIC].rpcUrl,
   [ChainId.ZK_ERA]: networkInfoMap[ChainId.ZK_ERA].rpcUrl,
   [ChainId.ZK_ERA_TESTNET]: networkInfoMap[ChainId.ZK_ERA_TESTNET].rpcUrl,
 };
 
 export const network = new NetworkConnector({
   urls: rpcMap,
-  defaultChainId: ChainId.MATIC,
+  defaultChainId: DEFAULT_CHAIN_ID,
 });
 
 export const mainnetNetwork = new NetworkConnector({
@@ -84,11 +80,7 @@ export function getNetworkLibrary(): Web3Provider {
     networkLibrary ?? new Web3Provider(network.provider as any));
 }
 
-const supportedChainIds: number[] = [
-  ChainId.MATIC,
-  ChainId.ZK_ERA,
-  ChainId.ZK_ERA_TESTNET,
-];
+const supportedChainIds: number[] = [ChainId.ZK_ERA, ChainId.ZK_ERA_TESTNET];
 
 export const injected = new InjectedConnector({
   supportedChainIds: supportedChainIds,
@@ -101,14 +93,7 @@ export const metamask = new MetaMaskConnector({
 export const safeApp = new SafeAppConnector();
 
 export const phantomconnect = new PhantomWalletConnector({
-  supportedChainIds: [137, 80001],
-});
-
-export const zengoconnect = new WalletConnectConnector({
-  rpc: { 137: NETWORK_URL },
-  bridge: 'https://bridge.walletconnect.org',
-  qrcode: true,
-  qrcodeModalOptions: { mobileLinks: ['ZenGo'] },
+  supportedChainIds: [],
 });
 
 // mainnet only
@@ -116,54 +101,6 @@ export const walletconnect = new WalletConnectConnector({
   rpc: rpcMap,
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
-});
-
-// mainnet only
-export const trustconnect = !!getTrustWalletInjectedProvider()
-  ? new TrustWalletConnector({
-      supportedChainIds: [137],
-    })
-  : new WalletConnectConnector({
-      rpc: { 137: NETWORK_URL },
-      bridge: 'https://bridge.walletconnect.org',
-      qrcode: true,
-    });
-
-// mainnet only
-export const arkaneconnect = new ArkaneConnector({
-  clientID: 'QuickSwap',
-  chainId: 137,
-});
-
-// mainnet only
-export const fortmatic = new FortmaticConnector({
-  apiKey: FORMATIC_KEY ?? '',
-  chainId: 137,
-});
-
-// mainnet only
-export const portis = new PortisConnector({
-  dAppId: PORTIS_ID ?? '',
-  networks: [137],
-  config: {
-    nodeUrl: NETWORK_URL,
-    chainId: 137,
-  },
-});
-
-// mainnet only
-export const walletlink = new WalletLinkConnector({
-  url: NETWORK_URL,
-  appName: 'Uniswap',
-  appLogoUrl:
-    'https://mpng.pngfly.com/20181202/bex/kisspng-emoji-domain-unicorn-pin-badges-sticker-unicorn-tumblr-emoji-unicorn-iphoneemoji-5c046729264a77.5671679315437924251569.jpg',
-  supportedChainIds: [137],
-});
-
-export const ledger = new LedgerConnector({
-  chainId: 137,
-  url: NETWORK_URL,
-  pollingInterval: POLLING_INTERVAL,
 });
 
 export const unstopabbledomains = new UAuthConnector({

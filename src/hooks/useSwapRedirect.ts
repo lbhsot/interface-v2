@@ -3,6 +3,7 @@ import { useActiveWeb3React, useIsProMode } from 'hooks';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import useParsedQueryString from './useParsedQueryString';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export default function useSwapRedirects() {
   const history = useHistory();
@@ -10,7 +11,7 @@ export default function useSwapRedirects() {
   const parsedQs = useParsedQueryString();
   const isProMode = useIsProMode();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const redirectWithCurrency = useCallback(
     (currency: any, isInput: boolean, isV2 = true) => {

@@ -28,6 +28,7 @@ import {
 import { useActiveWeb3React } from 'hooks';
 import { getConfig } from '../../config';
 import { PAIR_SEARCH_V3, TOKEN_SEARCH_V3 } from 'apollo/queries-v3';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 dayjs.extend(utc);
 
 const AnalyticsSearch: React.FC = () => {
@@ -35,7 +36,7 @@ const AnalyticsSearch: React.FC = () => {
   const history = useHistory();
   const [searchVal, setSearchVal] = useState('');
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const config = getConfig(chainIdToUse);
   const v2 = config['v2'];
   const [searchValInput, setSearchValInput] = useDebouncedChangeHandler(

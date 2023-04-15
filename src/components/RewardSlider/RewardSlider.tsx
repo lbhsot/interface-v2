@@ -14,13 +14,14 @@ import { useActiveWeb3React } from 'hooks';
 import { getOneYearFee } from 'utils';
 import 'components/styles/RewardSlider.scss';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const RewardSlider: React.FC = () => {
   const theme = useTheme();
   const { chainId } = useActiveWeb3React();
   const tabletWindowSize = useMediaQuery(theme.breakpoints.down('md'));
   const mobileWindowSize = useMediaQuery(theme.breakpoints.down('sm'));
-  const chainIdOrDefault = chainId ?? ChainId.MATIC;
+  const chainIdOrDefault = chainId ?? DEFAULT_CHAIN_ID;
   const lprewardItems = useStakingInfo(chainIdOrDefault, null, 0, 2);
   const dualrewardItems = useDualStakingInfo(chainIdOrDefault, null, 0, 1);
   const [bulkPairs, setBulkPairs] = useState<any>(null);

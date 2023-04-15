@@ -21,6 +21,7 @@ import { useLocalChainId } from 'state/application/hooks';
 import { GlobalConst } from '../constants';
 import { useParams } from 'react-router-dom';
 import { getConfig } from 'config';
+import { DEFAULT_CHAIN_ID } from '../sdk/uniswap/constants';
 
 export function useActiveWeb3React(): Web3ReactContextInterface<
   Web3Provider
@@ -254,7 +255,7 @@ export const useIsProMode = () => {
 
 export const useAnalyticsVersion = () => {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const config = getConfig(chainIdToUse);
   const v2 = config['v2'];
   const v3 = config['v3'];

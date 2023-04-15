@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useBestV3TradeExactOut } from './useBestV3Trade';
 import { ChainId } from 'sdk/uniswap';
 import { toV3Token, USDC } from 'constants/v3/addresses';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 /**
  * Returns the price in USDC of the input currency
@@ -14,7 +15,7 @@ export default function useUSDCPrice(
   allLiquidity?: boolean,
 ): Price<Currency, Token> | undefined {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
 
   const USDC_TOKEN = USDC[chainIdToUse];
   const USDC_V3_TOKEN = toV3Token(USDC_TOKEN);

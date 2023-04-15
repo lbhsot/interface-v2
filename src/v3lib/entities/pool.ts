@@ -11,6 +11,7 @@ import { TickMath } from '../utils/tickMath';
 import { Tick, TickConstructorArgs } from './tick';
 import { NoTickDataProvider, TickDataProvider } from './tickDataProvider';
 import { TickListDataProvider } from './tickListDataProvider';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface StepComputations {
   sqrtPriceStartX96: JSBI;
@@ -137,7 +138,7 @@ export class Pool {
     initCodeHashManualOverride?: string,
   ): string {
     return computePoolAddress({
-      factoryAddress: POOL_DEPLOYER_ADDRESS[ChainId.MATIC],
+      factoryAddress: POOL_DEPLOYER_ADDRESS[DEFAULT_CHAIN_ID],
       fee,
       tokenA,
       tokenB,

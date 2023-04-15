@@ -3,6 +3,7 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { blockClient, farmingClient, clientV3 } from '../../apollo/client';
 import { useActiveWeb3React } from 'hooks';
 import { ChainId } from 'sdk/uniswap';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export function useBlockClient(): ApolloClient<NormalizedCacheObject> {
   const { chainId } = useActiveWeb3React();
@@ -12,13 +13,13 @@ export function useBlockClient(): ApolloClient<NormalizedCacheObject> {
 
 export function useV3Client(): ApolloClient<NormalizedCacheObject> {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   return clientV3[chainIdToUse];
 }
 
 export function useFarmingClient(): ApolloClient<NormalizedCacheObject> {
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   return farmingClient[chainIdToUse];
 }
 

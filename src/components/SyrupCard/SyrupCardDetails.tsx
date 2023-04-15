@@ -27,6 +27,7 @@ import { useUSDCPriceToken } from 'utils/useUSDCPrice';
 import { GlobalConst } from 'constants/index';
 import { ChainId } from 'sdk/uniswap';
 import { formatUnits } from 'ethers/lib/utils';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const SyrupCardDetails: React.FC<{ syrup: SyrupInfo; dQUICKAPY: string }> = ({
   syrup,
@@ -40,7 +41,7 @@ const SyrupCardDetails: React.FC<{ syrup: SyrupInfo; dQUICKAPY: string }> = ({
   const [attemptingUnstake, setAttemptingUnstake] = useState(false);
   const [openStakeModal, setOpenStakeModal] = useState(false);
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const stakingTokenPrice = useUSDCPriceToken(syrup.stakingToken, chainIdToUse);
   const stakingContract = useStakingContract(syrup?.stakingRewardAddress);
   const addTransaction = useTransactionAdder();

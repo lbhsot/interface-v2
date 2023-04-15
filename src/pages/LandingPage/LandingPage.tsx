@@ -127,6 +127,10 @@ const LandingPage: React.FC = () => {
   useEffect(() => {
     updateIsV2(false);
   }, [updateIsV2]);
+  useEffect(() => {
+    history.push('/swap');
+  }, [history]);
+  return <div />;
 
   return (
     <div id='landing-page' style={{ width: '100%' }}>

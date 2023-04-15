@@ -13,11 +13,12 @@ import { ChainId } from 'sdk/uniswap';
 import { SelectorItem } from 'components/v3/CustomSelector/CustomSelector';
 import { SearchInput, SortColumns, CustomSwitch } from 'components';
 import { GammaPair, GammaPairs, GlobalConst } from 'constants/index';
+import { DEFAULT_CHAIN_ID } from '../../../sdk/uniswap/constants';
 
 export default function Farms() {
   const { t } = useTranslation();
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const parsedQuery = useParsedQueryString();
   const farmStatus =

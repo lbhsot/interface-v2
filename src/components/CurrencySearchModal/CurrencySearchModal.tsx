@@ -10,6 +10,7 @@ import { TokenInfo } from '@uniswap/token-lists';
 import { NativeCurrency, Currency as CurrencyV3 } from '@uniswap/sdk-core';
 import { useIsV2 } from 'state/application/hooks';
 import { useActiveWeb3React } from 'hooks';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 interface CurrencySearchModalProps {
   isOpen: boolean;
@@ -33,7 +34,7 @@ const CurrencySearchModal: React.FC<CurrencySearchModalProps> = ({
   const [listView, setListView] = useState<boolean>(false);
   const lastOpen = useLast(isOpen);
   const { chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ? chainId : ChainId.MATIC;
+  const chainIdToUse = chainId ? chainId : DEFAULT_CHAIN_ID;
   const nativeCurrency = ETHER[chainIdToUse];
   useEffect(() => {
     if (isOpen && !lastOpen) {

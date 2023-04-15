@@ -6,6 +6,7 @@ import { getAddress } from '@ethersproject/address';
 import {
   BigintIsh,
   ChainId,
+  DEFAULT_CHAIN_ID,
   ONE,
   SOLIDITY_TYPE_MAXIMA,
   SolidityType,
@@ -111,7 +112,7 @@ export function getPairToken(
   token1: Token,
   chainId?: ChainId,
 ): { symbol: string; name: string } {
-  if (chainId && chainId === ChainId.MATIC) {
+  if (chainId && chainId === DEFAULT_CHAIN_ID) {
     return {
       symbol: 'UNI-V2',
       name: 'Uniswap V2',

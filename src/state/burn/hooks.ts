@@ -17,6 +17,7 @@ import { wrappedCurrency } from 'utils/wrappedCurrency';
 import { tryParseAmount } from 'state/swap/hooks';
 import { useTokenBalances } from 'state/wallet/hooks';
 import { Field, typeInput } from './actions';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 export function useBurnState(): AppState['burn'] {
   return useSelector<AppState, AppState['burn']>((state) => state.burn);
@@ -36,7 +37,7 @@ export function useDerivedBurnInfo(
   error?: string;
 } {
   const { account, chainId } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
 
   const { independentField, typedValue } = useBurnState();
 

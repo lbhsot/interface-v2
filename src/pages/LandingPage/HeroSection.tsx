@@ -8,6 +8,7 @@ import { useWalletModalToggle } from 'state/application/hooks';
 import { useTranslation } from 'react-i18next';
 import { ChainId } from 'sdk/uniswap';
 import { getConfig } from 'config';
+import { DEFAULT_CHAIN_ID } from '../../sdk/uniswap/constants';
 
 const HeroSection: React.FC<{ globalData: any; v3GlobalData: any }> = ({
   globalData,
@@ -15,7 +16,7 @@ const HeroSection: React.FC<{ globalData: any; v3GlobalData: any }> = ({
 }) => {
   const history = useHistory();
   const { chainId, account } = useActiveWeb3React();
-  const chainIdToUse = chainId ?? ChainId.MATIC;
+  const chainIdToUse = chainId ?? DEFAULT_CHAIN_ID;
   const { ethereum } = window as any;
   const toggleWalletModal = useWalletModalToggle();
   const { t } = useTranslation();
