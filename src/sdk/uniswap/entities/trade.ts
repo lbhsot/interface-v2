@@ -406,11 +406,6 @@ export class Trade {
         ? currencyIn.chainId
         : undefined;
     invariant(chainId !== undefined, 'CHAIN_ID');
-    console.log(
-      'currencyIn, currencyAmountOut -> ',
-      currencyIn,
-      currencyAmountOut,
-    );
 
     const amountOut = wrappedAmount(currencyAmountOut, chainId);
     const tokenIn = wrappedCurrency(currencyIn, chainId);
@@ -427,18 +422,13 @@ export class Trade {
       let amountIn: TokenAmount;
       try {
         [amountIn] = pair.getInputAmount(amountOut);
-        console.log('amountIn -> ', amountIn);
       } catch (error) {
-        console.log('error -> ', error);
         // not enough liquidity in this pair
         if (error.isInsufficientReservesError) {
           continue;
         }
         throw error;
       }
-      console.log('amountOut -> ', amountOut);
-      console.log('tokenIn -> ', tokenIn, 'amountIn -> ', amountIn);
-      console.log('bestTrades -> ', bestTrades);
       // we have arrived at the input token, so this is the first trade of one of the paths
       if (amountIn.token.equals(tokenIn)) {
         sortedInsert(
@@ -475,7 +465,6 @@ export class Trade {
         );
       }
     }
-    console.log(bestTrades);
 
     return bestTrades;
   }

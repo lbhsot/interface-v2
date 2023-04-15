@@ -988,7 +988,6 @@ export const getIntervalTokenDataV3 = async (
     return formattedHistory;
   } catch (e) {
     console.log(e);
-    console.log('error fetching blocks');
     return [];
   }
 };

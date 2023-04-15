@@ -277,7 +277,6 @@ export function useMintActionHandlers(
 
   const onFieldAInput = useCallback(
     (typedValue: string) => {
-      console.log('onFieldAInput -> ', typedValue);
       dispatch(
         typeInput({
           field: Field.CURRENCY_A,
@@ -290,7 +289,6 @@ export function useMintActionHandlers(
   );
   const onFieldBInput = useCallback(
     (typedValue: string) => {
-      console.log('onFieldBInput -> ', typedValue);
       dispatch(
         typeInput({
           field: Field.CURRENCY_B,
@@ -304,7 +302,6 @@ export function useMintActionHandlers(
 
   const onCurrencySelection = useCallback(
     (field: Field, currency: Currency) => {
-      console.log('onCurrencySelection -> ', field, currency);
       dispatch(
         selectCurrency({
           field,

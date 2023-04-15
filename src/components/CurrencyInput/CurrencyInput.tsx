@@ -68,7 +68,6 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   // const usdPriceV3Obj = useUSDCPriceV3(currencyV3);
   // const usdPriceV3 = Number(usdPriceV3Obj?.toSignificant() ?? 0);
   const usdPrice = Number(useUSDCPrice(currency)?.toSignificant() ?? 0);
-  console.log('usdPrice, currency?.symbol -> ', usdPrice, currency?.symbol);
 
   return (
     <Box

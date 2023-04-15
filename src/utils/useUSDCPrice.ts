@@ -44,7 +44,6 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
     return USDC[chainId];
   }, [chainId]);
   const allowedPairs = useAllCommonPairs(currency, usdcToken);
-  console.log(allowedPairs, currency?.symbol, usdcToken?.symbol);
   const amountOut = chainId
     ? tryParseAmount(chainId, '1', usdcToken)
     : undefined;
@@ -59,7 +58,6 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
         maxHops: 3,
         maxNumResults: 1,
       })[0] ?? null;
-    console.log('trade -> ', trade);
 
     if (!trade) return;
 

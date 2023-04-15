@@ -39,7 +39,6 @@ const SwapTokenDetailsHorizontal: React.FC<{
   const priceUpPercent = Number(tokenData?.priceChangeUSD).toFixed(2);
   const prices = priceData ? priceData.map((price: any) => price.close) : [];
   const { ethPrice } = useEthPrice();
-  const { maticPrice } = useMaticPrice();
   const config = getConfig(chainId);
   const v2 = config['v2'];
 
@@ -81,10 +80,10 @@ const SwapTokenDetailsHorizontal: React.FC<{
       setPriceData(tokenPriceData);
 
       let token0;
-      if (ethPrice.price && ethPrice.oneDayPrice && v2) {
+      if (ethPrice.price && v2) {
         const tokenInfo = await getTokenInfo(
           ethPrice.price,
-          ethPrice.oneDayPrice,
+          ethPrice.oneDayPrice || ethPrice.price,
           tokenAddress,
           chainIdToUse,
         );
@@ -99,39 +98,32 @@ const SwapTokenDetailsHorizontal: React.FC<{
           updateTokenDetails(tokenDetailToUpdate);
         }
       }
-      if (!token0 || !token0.priceUSD) {
-        if (maticPrice.price && maticPrice.oneDayPrice) {
-          const tokenInfoV3 = await getTokenInfoV3(
-            maticPrice.price,
-            maticPrice.oneDayPrice,
-            tokenAddress.toLowerCase(),
-            chainIdToUse,
-          );
-          const tokenV3 =
-            tokenInfoV3 && tokenInfoV3.length > 0
-              ? tokenInfoV3[0]
-              : tokenInfoV3;
-          if (tokenV3) {
-            setTokenData(tokenV3);
-            const tokenDetailToUpdate = {
-              address: tokenAddress,
-              tokenData: tokenV3,
-              priceData: tokenPriceData,
-            };
-            updateTokenDetails(tokenDetailToUpdate);
-          }
-        }
-      }
+      // if (!token0 || !token0.priceUSD) {
+      //   if (maticPrice.price && maticPrice.oneDayPrice) {
+      //     const tokenInfoV3 = await getTokenInfoV3(
+      //       maticPrice.price,
+      //       maticPrice.oneDayPrice,
+      //       tokenAddress.toLowerCase(),
+      //       chainIdToUse,
+      //     );
+      //     const tokenV3 =
+      //       tokenInfoV3 && tokenInfoV3.length > 0
+      //         ? tokenInfoV3[0]
+      //         : tokenInfoV3;
+      //     if (tokenV3) {
+      //       setTokenData(tokenV3);
+      //       const tokenDetailToUpdate = {
+      //         address: tokenAddress,
+      //         tokenData: tokenV3,
+      //         priceData: tokenPriceData,
+      //       };
+      //       updateTokenDetails(tokenDetailToUpdate);
+      //     }
+      //   }
+      // }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    tokenAddress,
-    ethPrice.price,
-    ethPrice.oneDayPrice,
-    maticPrice.price,
-    maticPrice.oneDayPrice,
-    chainIdToUse,
-  ]);
+  }, [tokenAddress, ethPrice.price, ethPrice.oneDayPrice, chainIdToUse]);
 
   return (
     <Grid container spacing={1}>

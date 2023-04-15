@@ -59,23 +59,23 @@ const SwapDefaultMode: React.FC<{
             {leftOpen && (
               <Grid item xs={12} lg={10}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Box
-                      className='wrapper'
-                      sx={{ marginTop: { xs: '-16px', lg: '0px' } }}
-                    >
-                      {token1 && <SwapTokenDetailsHorizontal token={token1} />}
-                      <Divider
-                        style={{
-                          marginLeft: '-24px',
-                          marginRight: '-24px',
-                          marginTop: '12px',
-                          marginBottom: '12px',
-                        }}
-                      />
-                      {token2 && <SwapTokenDetailsHorizontal token={token2} />}
-                    </Box>
-                  </Grid>
+                  {/*<Grid item xs={12}>*/}
+                  {/*  <Box*/}
+                  {/*    className='wrapper'*/}
+                  {/*    sx={{ marginTop: { xs: '-16px', lg: '0px' } }}*/}
+                  {/*  >*/}
+                  {/*    {token1 && <SwapTokenDetailsHorizontal token={token1} />}*/}
+                  {/*    <Divider*/}
+                  {/*      style={{*/}
+                  {/*        marginLeft: '-24px',*/}
+                  {/*        marginRight: '-24px',*/}
+                  {/*        marginTop: '12px',*/}
+                  {/*        marginBottom: '12px',*/}
+                  {/*      }}*/}
+                  {/*    />*/}
+                  {/*    {token2 && <SwapTokenDetailsHorizontal token={token2} />}*/}
+                  {/*  </Box>*/}
+                  {/*</Grid>*/}
                   <Grid item xs={12}>
                     {token1 && token2 && (
                       <Box className='wrapper'>

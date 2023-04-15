@@ -79,7 +79,6 @@ export function useInitTransak() {
           },
         }),
       );
-      console.log(data);
     });
 
     // This will trigger when the user marks payment is made.
@@ -104,7 +103,6 @@ export function useInitTransak() {
           },
         }),
       );
-      console.log(orderData);
       transak.close();
     });
   };

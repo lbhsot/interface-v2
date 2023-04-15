@@ -8,9 +8,6 @@ import LiquidityPoolRow from './LiquidityPoolRow';
 import { useAllTokens } from 'hooks/Tokens';
 import { useTranslation } from 'react-i18next';
 import { useEthPrice } from 'state/application/hooks';
-import { getTopPairsV3ByTokens } from 'utils/v3-graph';
-import { useActiveWeb3React } from 'hooks';
-import { getConfig } from 'config';
 
 const LiquidityPools: React.FC<{
   token1: Token;
@@ -23,8 +20,12 @@ const LiquidityPools: React.FC<{
   const [liquidityPoolClosed, setLiquidityPoolClosed] = useState(isMobile);
   const [liquidityFilterIndex, setLiquidityFilterIndex] = useState(0);
   const [tokenPairs, updateTokenPairs] = useState<any[] | null>(null);
-  const token1Address = token1.address.toLowerCase();
-  const token2Address = token2.address.toLowerCase();
+  const token1Address = useMemo(() => {
+    return token1.address.toLowerCase();
+  }, [token1.address]);
+  const token2Address = useMemo(() => {
+    return token2.address.toLowerCase();
+  }, [token2.address]);
   const allTokenList = useAllTokens();
   const { t } = useTranslation();
   const { ethPrice } = useEthPrice();
@@ -76,44 +77,47 @@ const LiquidityPools: React.FC<{
   useEffect(() => {
     if (!ethPrice.price) return;
     (async () => {
-      const config = getConfig(token1.chainId);
-      const v2 = config['v2'];
-      let pairData;
-      if (v2) {
-        const tokenPairs = await getTokenPairs(
-          token1Address,
-          token2Address,
-          token1.chainId ?? ChainId.MATIC,
-        );
-        const formattedPairs = tokenPairs
-          ? tokenPairs
-              .filter((pair: any) => {
-                return (
-                  whiteListAddressList.includes(pair?.token0?.id) &&
-                  whiteListAddressList.includes(pair?.token1?.id)
-                );
-              })
-              .map((pair: any) => {
-                return pair.id;
-              })
-          : [];
-
-        pairData = await getBulkPairData(
-          formattedPairs,
-          ethPrice.price,
-          token1.chainId,
-        );
-      }
-      const tokenPairsV3 = await getTopPairsV3ByTokens(
-        token1Address.toLowerCase(),
-        token2Address.toLowerCase(),
-        token1.chainId ?? ChainId.MATIC,
+      // const config = getConfig(token1.chainId);
+      // const v2 = config['v2'];
+      // if (v2) {
+      const tokenPairs = await getTokenPairs(
+        token1Address,
+        token2Address,
+        token1.chainId ?? ChainId.ZK_ERA,
       );
+      const formattedPairs = tokenPairs
+        ? tokenPairs
+            .filter((pair: any) => {
+              return true;
+              // return (
+              //   whiteListAddressList.includes(pair?.token0?.id) &&
+              //   whiteListAddressList.includes(pair?.token1?.id)
+              // );
+            })
+            .map((pair: any) => pair.id)
+        : [];
 
-      updateTokenPairs((pairData ?? []).concat(tokenPairsV3));
+      const pairData = await getBulkPairData(
+        formattedPairs,
+        ethPrice.price,
+        token1.chainId,
+      );
+      // }
+      // const tokenPairsV3 = await getTopPairsV3ByTokens(
+      //   token1Address.toLowerCase(),
+      //   token2Address.toLowerCase(),
+      //   token1.chainId ?? ChainId.MATIC,
+      // );
+
+      updateTokenPairs(pairData ?? []);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token1Address, token2Address, whiteListAddressList, ethPrice.price]);
+  }, [
+    token1Address,
+    token2Address,
+    whiteListAddressList,
+    ethPrice.price,
+    token1.chainId,
+  ]);
 
   useEffect(() => {
     setTimeout(() => {

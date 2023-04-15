@@ -76,24 +76,24 @@ const AddLiquidity: React.FC<{
   // queried currency
   const params: any = useParams();
   const parsedQuery = useParsedQueryString();
-  const currency0Id =
-    params && params.currencyIdA
-      ? params.currencyIdA.toLowerCase() === 'matic' ||
-        params.currencyIdA.toLowerCase() === 'eth'
+  const currency0Id = useMemo(() => {
+    return params && params.currencyIdA
+      ? params.currencyIdA.toLowerCase() === 'eth'
         ? 'ETH'
         : params.currencyIdA
       : parsedQuery && parsedQuery.currency0
       ? (parsedQuery.currency0 as string)
       : undefined;
-  const currency1Id =
-    params && params.currencyIdB
-      ? params.currencyIdB.toLowerCase() === 'matic' ||
-        params.currencyIdB.toLowerCase() === 'eth'
+  }, [params, parsedQuery]);
+  const currency1Id = useMemo(() => {
+    return params && params.currencyIdB
+      ? params.currencyIdB.toLowerCase() === 'eth'
         ? 'ETH'
         : params.currencyIdB
       : parsedQuery && parsedQuery.currency1
       ? (parsedQuery.currency1 as string)
       : undefined;
+  }, [params, parsedQuery]);
   const currency0 = useCurrency(currency0Id);
   const currency1 = useCurrency(currency1Id);
 
@@ -194,21 +194,20 @@ const AddLiquidity: React.FC<{
 
   useEffect(() => {
     if (currency0) {
-      console.log('currency0', currency0);
       onCurrencySelection(Field.CURRENCY_A, currency0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currency0Id]);
+  }, [currency0]);
 
   const handleCurrencyBSelect = useCallback(
     (currencyB: any) => {
-      const isSwichRedirect = currencyEquals(currencyB, ETHER[chainIdToUse])
+      const isSwitchRedirect = currencyEquals(currencyB, ETHER[chainIdToUse])
         ? currency0Id === 'ETH'
         : currencyB &&
           currencyB.address &&
           currency0Id &&
           currencyB.address.toLowerCase() === currency0Id.toLowerCase();
-      if (isSwichRedirect) {
+      if (isSwitchRedirect) {
         redirectWithSwitch(currencyB, false);
       } else {
         redirectWithCurrency(currencyB, false);
@@ -219,11 +218,10 @@ const AddLiquidity: React.FC<{
 
   useEffect(() => {
     if (currency1) {
-      console.log('currency1: ', currency1);
       onCurrencySelection(Field.CURRENCY_B, currency1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currency1Id]);
+  }, [currency1]);
 
   const onAdd = () => {
     setAddLiquidityErrorMessage(null);

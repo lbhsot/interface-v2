@@ -546,9 +546,13 @@ export const PAIRS_HISTORICAL_BULK: any = (block: number, pairs: any[]) => {
     return (pairsString += `"${pair.toLowerCase()}"`);
   });
   pairsString += ']';
+  let firstString = '';
+  if (pairs.length > 0) {
+    firstString = `first: ${pairs.length}`;
+  }
   const queryString = `
   query pairs {
-    pairs(first: ${pairs.length}, where: {id_in: ${pairsString}}, block: {number: ${block}}, orderBy: trackedReserveETH, orderDirection: desc) {
+    pairs(${firstString}, where: {id_in: ${pairsString}}, block: {number: ${block}}, orderBy: trackedReserveETH, orderDirection: desc) {
       id
       reserveUSD
       trackedReserveETH
@@ -640,12 +644,12 @@ export const GLOBAL_CHART = gql`
 `;
 
 export const GET_BLOCK = gql`
-  query blocks($timestampFrom: Int!, $timestampTo: Int!) {
+  query blocks($timestampFrom: Int!) {
     blocks(
       first: 1
       orderBy: timestamp
       orderDirection: asc
-      where: { timestamp_gt: $timestampFrom, timestamp_lt: $timestampTo }
+      where: { timestamp_gt: $timestampFrom }
     ) {
       id
       number
@@ -657,8 +661,7 @@ export const GET_BLOCK = gql`
 export const GET_BLOCKS: any = (timestamps: number[]) => {
   let queryString = 'query blocks {';
   queryString += timestamps.map((timestamp) => {
-    return `t${timestamp}:blocks(first: 1, orderBy: timestamp, orderDirection: desc, where: { timestamp_gt: ${timestamp}, timestamp_lt: ${timestamp +
-      600} }) {
+    return `t${timestamp}:blocks(first: 1, orderBy: timestamp, orderDirection: desc, where: { timestamp_gt: ${timestamp} }) {
       number
     }`;
   });

@@ -138,7 +138,6 @@ const ContestPage: React.FC = () => {
       } else {
         pools_in = [contestFilter.address];
       }
-      console.log('pools_in', pools_in);
 
       const swapData: SwapDataV3[] = await getTradingDataBetweenDates(
         pools_in,

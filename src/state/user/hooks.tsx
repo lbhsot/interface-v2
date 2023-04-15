@@ -251,7 +251,6 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
     ? [tokenA, tokenB]
     : [tokenB, tokenA];
   const pairInfo = getPairToken(token0, token1);
-  console.log(token0.symbol, token0.address, token1.symbol, token1.address);
   return new Token(
     tokenA.chainId,
     Pair.getAddress(token0, token1),

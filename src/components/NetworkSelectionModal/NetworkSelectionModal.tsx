@@ -33,7 +33,6 @@ const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = ({
     (chainId: ChainId) => {
       const config = getConfig(chainId);
       const chainIdHex = chainId.toString(16);
-      console.log(chainId, chainIdHex);
       if (ethereum) {
         ethereum
           .send('wallet_switchEthereumChain', [{ chainId: `0x${chainIdHex}` }])

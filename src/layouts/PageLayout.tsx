@@ -18,7 +18,6 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, name }) => {
   const arcxSDK = (window as any).arcx;
   const [openPassModal, setOpenPassModal] = useState(false);
   const getPageWrapperClassName = () => {
-    console.log('getPageWrapperClassName => ', location);
     if (isProMode) {
       return '';
     } else if (location.href.indexOf('/swap?') > 0) {

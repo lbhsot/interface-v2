@@ -254,7 +254,7 @@ export function useIsV2(): {
     },
     [dispatch],
   );
-  return { isV2, updateIsV2: _updateIsV2 };
+  return { isV2: true, updateIsV2: _updateIsV2 };
 }
 
 export function useUDDomain(): {

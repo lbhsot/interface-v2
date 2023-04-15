@@ -8,51 +8,51 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import {
   blockClient,
   clientV2,
-  txClient,
   clientV3,
   farmingClient,
+  txClient,
 } from 'apollo/client';
 import {
+  ALL_PAIRS,
+  ALL_TOKENS,
+  ETH_PRICE,
+  FILTERED_TRANSACTIONS,
   GET_BLOCK,
-  GLOBAL_DATA,
-  GLOBAL_CHART,
   GET_BLOCKS,
-  TOKENS_CURRENT,
-  TOKENS_DYNAMIC,
+  GLOBAL_ALLDATA,
+  GLOBAL_CHART,
+  GLOBAL_DATA,
+  PAIR_CHART,
+  PAIR_DATA,
+  PAIR_ID,
+  PAIRS_BULK1,
+  PAIRS_CURRENT,
+  PAIRS_HISTORICAL_BULK,
+  PRICES_BY_BLOCK,
+  SWAP_TRANSACTIONS,
   TOKEN_CHART,
   TOKEN_DATA1,
   TOKEN_DATA2,
-  PAIR_CHART,
-  PAIR_DATA,
-  PAIRS_BULK1,
-  PAIRS_HISTORICAL_BULK,
-  PRICES_BY_BLOCK,
-  PAIRS_CURRENT,
-  ALL_PAIRS,
-  ALL_TOKENS,
   TOKEN_INFO,
   TOKEN_INFO_OLD,
-  FILTERED_TRANSACTIONS,
-  SWAP_TRANSACTIONS,
-  GLOBAL_ALLDATA,
-  ETH_PRICE,
-  PAIR_ID,
+  TOKENS_CURRENT,
+  TOKENS_DYNAMIC,
 } from 'apollo/queries';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
 import {
-  CurrencyAmount,
   ChainId,
-  Percent,
-  JSBI,
   Currency,
+  CurrencyAmount,
   ETHER,
+  JSBI,
+  Pair,
+  Percent,
   Token,
   TokenAmount,
-  Pair,
 } from 'sdk/uniswap';
 import {
-  CurrencyAmount as CurrencyAmountV3,
   Currency as CurrencyV3,
+  CurrencyAmount as CurrencyAmountV3,
 } from '@uniswap/sdk-core';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from 'ethers/lib/utils';
@@ -66,8 +66,10 @@ import {
 import { TokenAddressMap } from 'state/lists/hooks';
 import { TokenAddressMap as TokenAddressMapV3 } from 'state/lists/v3/hooks';
 import {
+  DualStakingBasic,
   DualStakingInfo,
   LairInfo,
+  StakingBasic,
   StakingInfo,
   SyrupBasic,
   SyrupInfo,
@@ -75,12 +77,15 @@ import {
 import { unwrappedToken } from './wrappedCurrency';
 import { useUSDCPriceFromAddress } from './useUSDCPrice';
 import { CallState } from 'state/multicall/hooks';
-import { DualStakingBasic, StakingBasic } from 'types';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 import { injected } from 'connectors';
 import Web3 from 'web3';
 import { useActiveWeb3React } from 'hooks';
-import { DLQUICK, NEW_QUICK, OLD_QUICK } from 'constants/v3/addresses';
+import {
+  DLQUICK,
+  OLD_QUICK,
+  V2_FACTORY_ADDRESSES,
+} from 'constants/v3/addresses';
 import { getConfig } from 'config';
 import {
   FETCH_ETERNAL_FARM_FROM_POOL,
@@ -89,13 +94,8 @@ import {
 import { useEffect, useState } from 'react';
 import { useEthPrice } from 'state/application/hooks';
 import { formatTokenSymbol, getGlobalDataV3 } from './v3-graph';
-import { V2_FACTORY_ADDRESSES } from 'constants/v3/addresses';
 import { TFunction } from 'react-i18next';
-import {
-  PAIR_ID_V3,
-  SWAP_TRANSACTIONS_v3,
-  TOKENS_FROM_ADDRESSES_V3,
-} from 'apollo/queries-v3';
+import { PAIR_ID_V3, SWAP_TRANSACTIONS_v3 } from 'apollo/queries-v3';
 
 dayjs.extend(utc);
 dayjs.extend(weekOfYear);
@@ -136,7 +136,6 @@ export async function getBlockFromTimestamp(
     query: GET_BLOCK,
     variables: {
       timestampFrom: timestamp,
-      timestampTo: timestamp + 600,
     },
     fetchPolicy: 'network-only',
   });
@@ -505,16 +504,16 @@ export const getTokenInfo = async (
           });
 
           // HOTFIX for Aave
-          if (data.id === '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
-            const aaveData = await clientV2[chainId].query({
-              query: PAIR_DATA('0xdfc14d2af169b0d36c4eff567ada9b2e0cae044f'),
-              fetchPolicy: 'network-only',
-            });
-            const result = aaveData.data.pairs[0];
-            data.totalLiquidityUSD = Number(result.reserveUSD) / 2;
-            data.liquidityChangeUSD = 0;
-            data.priceChangeUSD = 0;
-          }
+          // if (data.id === '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
+          //   const aaveData = await clientV2[chainId].query({
+          //     query: PAIR_DATA('0xdfc14d2af169b0d36c4eff567ada9b2e0cae044f'),
+          //     fetchPolicy: 'network-only',
+          //   });
+          //   const result = aaveData.data.pairs[0];
+          //   data.totalLiquidityUSD = Number(result.reserveUSD) / 2;
+          //   data.liquidityChangeUSD = 0;
+          //   data.priceChangeUSD = 0;
+          // }
           return data;
         }),
     );
@@ -922,7 +921,6 @@ export const getIntervalTokenData = async (
     return formattedHistory;
   } catch (e) {
     console.log(e);
-    console.log('error fetching blocks');
     return [];
   }
 };
@@ -1047,7 +1045,6 @@ export const getSwapTransactionsV3 = async (
 
     return swaps;
   } catch (e) {
-    console.log('ccc', e);
     return;
   }
 };
@@ -1211,14 +1208,12 @@ export const getBulkPairData: (
       },
       fetchPolicy: 'network-only',
     });
-
     const [oneDayResult, twoDayResult, oneWeekResult] = await Promise.all(
       [b1, b2, bWeek].map(async (block) => {
-        const result = await clientV2[chainId].query({
+        return await clientV2[chainId].query({
           query: PAIRS_HISTORICAL_BULK(block, pairList),
           fetchPolicy: 'network-only',
         });
-        return result;
       }),
     );
 
@@ -1243,7 +1238,7 @@ export const getBulkPairData: (
       {},
     );
 
-    const pairData = await Promise.all(
+    return await Promise.all(
       current &&
         current.data.pairs.map(async (pair: any) => {
           let data = pair;
@@ -1316,7 +1311,6 @@ export const getBulkPairData: (
           return data;
         }),
     );
-    return pairData;
   } catch (e) {
     console.log(e);
   }
