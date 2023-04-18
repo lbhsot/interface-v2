@@ -19,6 +19,8 @@ type ChainTokenList = {
 const WETH_ONLY: ChainTokenList = {
   [ChainId.ZK_ERA]: [WETH[ChainId.ZK_ERA]],
   [ChainId.ZK_ERA_TESTNET]: [WETH[ChainId.ZK_ERA_TESTNET]],
+  [ChainId.LINEA_TESTNET]: [WETH[ChainId.LINEA_TESTNET]],
+  [ChainId.SCROLL_ALPHA_TESTNET]: [WETH[ChainId.SCROLL_ALPHA_TESTNET]],
 };
 
 export const toV3Token = (t: {
@@ -43,6 +45,8 @@ export const toV3Currency = (t: {
 export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.ZK_ERA]: '', // todo fixme
   [ChainId.ZK_ERA_TESTNET]: '0x88495e37572D0bE88E36669C2d0Ba38C3fA06E7A',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '0xA69C056fCB17d3E2528e9F5a116262D12903D9De',
+  [ChainId.LINEA_TESTNET]: '0xA69C056fCB17d3E2528e9F5a116262D12903D9De',
 };
 
 // export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
@@ -55,16 +59,22 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
 export const POOL_DEPLOYER_ADDRESS: AddressMap = {
   [ChainId.ZK_ERA]: '',
   [ChainId.ZK_ERA_TESTNET]: '',
+  [ChainId.LINEA_TESTNET]: '',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '',
 };
 
 export const QUOTER_ADDRESSES: AddressMap = {
   [ChainId.ZK_ERA]: '',
   [ChainId.ZK_ERA_TESTNET]: '',
+  [ChainId.LINEA_TESTNET]: '',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '',
 };
 
 export const SWAP_ROUTER_ADDRESSES: AddressMap = {
   [ChainId.ZK_ERA]: '',
   [ChainId.ZK_ERA_TESTNET]: '',
+  [ChainId.LINEA_TESTNET]: '',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '',
 };
 
 export const SWAP_ROUTER_ADDRESS: AddressMap = {};
@@ -78,11 +88,15 @@ export const GAMMA_MASTERCHEF_ADDRESSES: AddressMap[] = [];
 export const MULTICALL_ADDRESS: AddressMap = {
   [ChainId.ZK_ERA]: '', // todo fixme
   [ChainId.ZK_ERA_TESTNET]: '0x18c4a4f85CD63d83b8190e484ceC19510F8d77cD',
+  [ChainId.LINEA_TESTNET]: '0xd8069b3395c6bE5668395fa2DFd130E976dE808E',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '0x4216f1ce1F0e9FC1131F1eb322353185821624CD',
 };
 
 export const V3_MIGRATOR_ADDRESSES: AddressMap = {
   [ChainId.ZK_ERA]: '',
   [ChainId.ZK_ERA_TESTNET]: '',
+  [ChainId.LINEA_TESTNET]: '',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '',
 };
 
 export const FINITE_FARMING: AddressMap = {};
@@ -92,6 +106,8 @@ export const FARMING_CENTER: AddressMap = {};
 export const V2_FACTORY_ADDRESSES: AddressMap = {
   [ChainId.ZK_ERA]: '', // fixme
   [ChainId.ZK_ERA_TESTNET]: '0xc457be4CB96Fa4Ed612DA41fb9F4f86B3606911f',
+  [ChainId.LINEA_TESTNET]: '0x3D8bafcAD95b93264D7fcfC6B351Dc547569F681',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '0x3D8bafcAD95b93264D7fcfC6B351Dc547569F681',
 };
 
 export const EXCHANGE_FACTORY_ADDRESS_MAPS: ExchangeAddressMap = {
@@ -107,6 +123,8 @@ export const EXCHANGE_PAIR_INIT_HASH_MAPS: ExchangeAddressMap = {
 export const V2_ROUTER_ADDRESS: AddressMap = {
   [ChainId.ZK_ERA]: '',
   [ChainId.ZK_ERA_TESTNET]: '0x3d31a0f27267F917Fe6d85fe221963bfbBb83bC6',
+  [ChainId.LINEA_TESTNET]: '0x08Cd1d62ad16495C6CBa7EBCc9C0C5c18a1b0306',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '0x08Cd1d62ad16495C6CBa7EBCc9C0C5c18a1b0306',
 };
 
 export const PARASWAP_PROXY_ROUTER_ADDRESS: AddressMap = {};
@@ -143,6 +161,20 @@ export const USDC: { [chainId: number]: Token } = {
   [ChainId.ZK_ERA_TESTNET]: new Token(
     ChainId.ZK_ERA_TESTNET,
     '0x0faF6df7054946141266420b43783387A78d82A9',
+    6,
+    'USDC',
+    'USD Coin',
+  ),
+  [ChainId.LINEA_TESTNET]: new Token(
+    ChainId.LINEA_TESTNET,
+    '0x37922c71477dd9c2e781706A81019c9a5D0a3aC8',
+    6,
+    'USDC',
+    'USD Coin',
+  ),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new Token(
+    ChainId.SCROLL_ALPHA_TESTNET,
+    '0xA0D71B9877f44C744546D649147E3F1e70a93760',
     6,
     'USDC',
     'USD Coin',
@@ -214,6 +246,14 @@ export const V2_BASES_TO_CHECK_TRADES_AGAINST: {
     WBTC[ChainId.ZK_ERA_TESTNET],
     DAI[ChainId.ZK_ERA_TESTNET],
   ],
+  [ChainId.LINEA_TESTNET]: [
+    ...WETH_ONLY[ChainId.LINEA_TESTNET],
+    USDC[ChainId.LINEA_TESTNET],
+  ],
+  [ChainId.SCROLL_ALPHA_TESTNET]: [
+    ...WETH_ONLY[ChainId.SCROLL_ALPHA_TESTNET],
+    USDC[ChainId.SCROLL_ALPHA_TESTNET],
+  ],
 };
 
 export const StableCoins: { [ChainId: number]: Token[] } = {
@@ -245,6 +285,14 @@ export const SUGGESTED_BASES: {
     USDC[ChainId.ZK_ERA_TESTNET],
     WBTC[ChainId.ZK_ERA_TESTNET],
   ],
+  [ChainId.LINEA_TESTNET]: [
+    ...WETH_ONLY[ChainId.LINEA_TESTNET],
+    USDC[ChainId.LINEA_TESTNET],
+  ],
+  [ChainId.SCROLL_ALPHA_TESTNET]: [
+    ...WETH_ONLY[ChainId.SCROLL_ALPHA_TESTNET],
+    USDC[ChainId.SCROLL_ALPHA_TESTNET],
+  ],
 };
 
 export const V2_BASES_TO_TRACK_LIQUIDITY_FOR: {
@@ -254,6 +302,14 @@ export const V2_BASES_TO_TRACK_LIQUIDITY_FOR: {
     ...WETH_ONLY[ChainId.ZK_ERA_TESTNET],
     DAI[ChainId.ZK_ERA_TESTNET],
     USDC[ChainId.ZK_ERA_TESTNET],
+  ],
+  [ChainId.LINEA_TESTNET]: [
+    ...WETH_ONLY[ChainId.LINEA_TESTNET],
+    USDC[ChainId.LINEA_TESTNET],
+  ],
+  [ChainId.SCROLL_ALPHA_TESTNET]: [
+    ...WETH_ONLY[ChainId.SCROLL_ALPHA_TESTNET],
+    USDC[ChainId.SCROLL_ALPHA_TESTNET],
   ],
 };
 
@@ -269,6 +325,8 @@ export const V2_PINNED_PAIRS: {
     [WBTC[ChainId.ZK_ERA_TESTNET], DAI[ChainId.ZK_ERA_TESTNET]],
     [WBTC[ChainId.ZK_ERA_TESTNET], USDC[ChainId.ZK_ERA_TESTNET]],
   ],
+  [ChainId.LINEA_TESTNET]: [],
+  [ChainId.ZK_ERA_TESTNET]: [],
 };
 
 export const V3_PINNED_PAIRS: {

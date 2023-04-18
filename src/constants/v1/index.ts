@@ -6,6 +6,8 @@ import V1_FACTORY_ABI from './v1_factory.json';
 const V1_FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.ZK_ERA]: '',
   [ChainId.ZK_ERA_TESTNET]: '',
+  [ChainId.SCROLL_ALPHA_TESTNET]: '',
+  [ChainId.LINEA_TESTNET]: '',
 };
 
 const V1_FACTORY_INTERFACE = new Interface(V1_FACTORY_ABI);

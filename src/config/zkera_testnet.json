@@ -5,7 +5,7 @@
   "blockExplorer": "https://goerli.explorer.zksync.io",
   "networkName": "ZkSync ERA Testnet",
   "chainId": 280,
-  "isMainnet": true,
+  "isMainnet": false,
   "nativeCurrencyImage": "/ETH.png",
   "nativeCurrency": {
     "name": "Ether",

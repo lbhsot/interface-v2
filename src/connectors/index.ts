@@ -1,19 +1,9 @@
 import { Web3Provider } from '@ethersproject/providers';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { LedgerConnector } from '@web3-react/ledger-connector';
 import { UAuthConnector } from '@uauth/web3-react';
-import { WalletLinkConnector } from './WalletLink';
-import { PortisConnector } from './Portis';
-
-import { FortmaticConnector } from './Fortmatic';
-import { ArkaneConnector } from './Arkane';
 import { NetworkConnector } from './NetworkConnector';
 import { SafeAppConnector } from './SafeApp';
-import {
-  getTrustWalletInjectedProvider,
-  TrustWalletConnector,
-} from './TrustWalletConnector';
 import { MetaMaskConnector } from './MetaMaskConnector';
 import { ChainId } from 'sdk/uniswap';
 import { PhantomWalletConnector } from './PhantomWalletConnector';
@@ -40,6 +30,14 @@ export const networkInfoMap: NetworkInfoChainMap = {
   [ChainId.ZK_ERA_TESTNET]: {
     rpcUrl: 'https://testnet.era.zksync.dev',
     scanUrl: 'https://goerli.explorer.zksync.io/',
+  },
+  [ChainId.LINEA_TESTNET]: {
+    rpcUrl: 'https://rpc.goerli.linea.build',
+    scanUrl: 'https://explorer.goerli.linea.build/',
+  },
+  [ChainId.SCROLL_ALPHA_TESTNET]: {
+    rpcUrl: 'https://alpha-rpc.scroll.io/l2',
+    scanUrl: 'https://blockscout.scroll.io/',
   },
 };
 
@@ -80,7 +78,12 @@ export function getNetworkLibrary(): Web3Provider {
     networkLibrary ?? new Web3Provider(network.provider as any));
 }
 
-const supportedChainIds: number[] = [ChainId.ZK_ERA, ChainId.ZK_ERA_TESTNET];
+const supportedChainIds: number[] = [
+  ChainId.ZK_ERA,
+  ChainId.ZK_ERA_TESTNET,
+  ChainId.LINEA_TESTNET,
+  ChainId.SCROLL_ALPHA_TESTNET,
+];
 
 export const injected = new InjectedConnector({
   supportedChainIds: supportedChainIds,

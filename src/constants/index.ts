@@ -1,28 +1,15 @@
 import { ChainId, JSBI, Percent, Token, WETH } from 'sdk/uniswap';
 import { AbstractConnector } from '@web3-react/abstract-connector';
-import { injected, walletconnect, safeApp, metamask } from '../connectors';
+import { injected, metamask, safeApp, walletconnect } from '../connectors';
 import MetamaskIcon from 'assets/images/metamask.png';
 import BlockWalletIcon from 'assets/images/blockwalletIcon.svg';
 import BraveWalletIcon from 'assets/images/braveWalletIcon.png';
 import cypherDIcon from 'assets/images/cypherDIcon.png';
 import BitKeepIcon from 'assets/images/bitkeep.png';
-import CoinbaseWalletIcon from 'assets/images/coinbaseWalletIcon.svg';
 import WalletConnectIcon from 'assets/images/walletConnectIcon.svg';
-import PortisIcon from 'assets/images/portisIcon.png';
-import PhantomIcon from 'assets/images/wallets/phantomIconPurple.svg';
-import VenlyIcon from 'assets/images/venly.svg';
 import GnosisIcon from 'assets/images/gnosis_safe.png';
-import TrustIcon from 'assets/images/trust.png';
-import ZengoIcon from 'assets/images/zengo.webp';
 import { Presets } from 'state/mint/v3/reducer';
-import UnstoppableDomainsIcon from 'assets/images/unstoppableDomains.png';
-import {
-  DAI,
-  NEW_QUICK_ADDRESS,
-  QUICK_ADDRESS,
-  USDC,
-  WBTC,
-} from './v3/addresses';
+import { DAI, USDC, WBTC } from './v3/addresses';
 
 export enum TxnType {
   SWAP,
@@ -62,11 +49,33 @@ export const WALLCHAIN_PARAMS = {
       apiKey: '',
     },
   },
+  [ChainId.LINEA_TESTNET]: {
+    [SmartRouter.PARASWAP]: {
+      apiURL: '',
+      apiKey: '',
+    },
+    [SmartRouter.QUICKSWAP]: {
+      apiURL: '',
+      apiKey: '',
+    },
+  },
+  [ChainId.SCROLL_ALPHA_TESTNET]: {
+    [SmartRouter.PARASWAP]: {
+      apiURL: '',
+      apiKey: '',
+    },
+    [SmartRouter.QUICKSWAP]: {
+      apiURL: '',
+      apiKey: '',
+    },
+  },
 };
 
 export const BONUS_CUTOFF_AMOUNT = {
   [ChainId.ZK_ERA_TESTNET]: 0,
   [ChainId.ZK_ERA]: 0,
+  [ChainId.LINEA_TESTNET]: 0,
+  [ChainId.SCROLL_ALPHA_TESTNET]: 0,
 };
 
 export const GlobalConst = {
@@ -169,7 +178,11 @@ export const GlobalConst = {
   },
 };
 
-export const SUPPORTED_CHAINIDS = [ChainId.ZK_ERA, ChainId.ZK_ERA_TESTNET];
+export const SUPPORTED_CHAINIDS = [
+  ChainId.ZK_ERA_TESTNET,
+  // ChainId.LINEA_TESTNET,
+  // ChainId.SCROLL_ALPHA_TESTNET,
+];
 
 export interface GammaPair {
   address: string;
@@ -189,6 +202,8 @@ export const GammaPairs: {
 } = {
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
+  [ChainId.LINEA_TESTNET]: {},
+  [ChainId.SCROLL_ALPHA_TESTNET]: {},
 };
 
 export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {

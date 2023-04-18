@@ -47,4 +47,22 @@ export const CHAIN_INFO: ChainInfo = {
     nativeCurrencyName: 'Ether',
     nativeCurrencyDecimals: 18,
   },
+  [ChainId.LINEA_TESTNET]: {
+    docs: '',
+    explorer: 'https://explorer.goerli.linea.build',
+    infoLink: '',
+    label: 'LINEA_TESTNET',
+    nativeCurrencySymbol: 'ETH',
+    nativeCurrencyName: 'Ether',
+    nativeCurrencyDecimals: 18,
+  },
+  [ChainId.SCROLL_ALPHA_TESTNET]: {
+    docs: '',
+    explorer: 'https://blockscout.scroll.io',
+    infoLink: '',
+    label: 'SCROLL_ALPHA_TESTNET',
+    nativeCurrencySymbol: 'ETH',
+    nativeCurrencyName: 'Ether',
+    nativeCurrencyDecimals: 18,
+  },
 };

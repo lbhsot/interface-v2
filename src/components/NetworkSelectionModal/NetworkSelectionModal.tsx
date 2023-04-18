@@ -24,7 +24,7 @@ const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = ({
   const { chainId } = useActiveWeb3React();
   const supportedChains = SUPPORTED_CHAINIDS.filter((chain) => {
     const config = getConfig(chain);
-    return config && config.isMainnet;
+    return !!config;
   });
   const { updateLocalChainId } = useLocalChainId();
   const { ethereum } = window as any;

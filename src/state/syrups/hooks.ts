@@ -73,6 +73,8 @@ export type SyrupInfoAddressMap = Readonly<
 const EMPTY_LIST: SyrupInfoAddressMap = {
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
+  [ChainId.LINEA_TESTNET]: {},
+  [ChainId.SCROLL_ALPHA_TESTNET]: {},
 };
 
 const syrupCache: WeakMap<SyrupListInfo, SyrupInfoAddressMap> | null =

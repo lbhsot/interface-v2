@@ -85,6 +85,8 @@ export type CNTFarmInfoAddressMap = Readonly<
 const EMPTY_LIST: CNTFarmInfoAddressMap = {
   [ChainId.ZK_ERA]: {},
   [ChainId.ZK_ERA_TESTNET]: {},
+  [ChainId.LINEA_TESTNET]: {},
+  [ChainId.SCROLL_ALPHA_TESTNET]: {},
 };
 
 const farmCache: WeakMap<CNTFarmListInfo, CNTFarmInfoAddressMap> | null =

@@ -19,6 +19,8 @@ export class Currency {
   public static readonly ETHER = {
     [ChainId.ZK_ERA]: new Currency(18, 'ETH', 'Ethereum'),
     [ChainId.ZK_ERA_TESTNET]: new Currency(18, 'ETH', 'Ethereum'),
+    [ChainId.LINEA_TESTNET]: new Currency(18, 'ETH', 'Ethereum'),
+    [ChainId.SCROLL_ALPHA_TESTNET]: new Currency(18, 'ETH', 'Ethereum'),
   };
 
   /**
@@ -39,5 +41,7 @@ export class Currency {
 const ETHER = {
   [ChainId.ZK_ERA]: Currency.ETHER[ChainId.ZK_ERA],
   [ChainId.ZK_ERA_TESTNET]: Currency.ETHER[ChainId.ZK_ERA_TESTNET],
+  [ChainId.LINEA_TESTNET]: Currency.ETHER[ChainId.LINEA_TESTNET],
+  [ChainId.SCROLL_ALPHA_TESTNET]: Currency.ETHER[ChainId.SCROLL_ALPHA_TESTNET],
 };
 export { ETHER };

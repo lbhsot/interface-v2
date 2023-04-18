@@ -80,4 +80,18 @@ export const WETH = {
     'WETH',
     'Wrapped ETH',
   ),
+  [ChainId.LINEA_TESTNET]: new Token(
+    ChainId.LINEA_TESTNET,
+    '0xEa51E2E458aE7Cb921d47fC463Ac4fED7ae65a41', // fixme
+    18,
+    'WETH',
+    'Wrapped ETH',
+  ),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new Token(
+    ChainId.SCROLL_ALPHA_TESTNET,
+    '0xEa51E2E458aE7Cb921d47fC463Ac4fED7ae65a41', // fixme
+    18,
+    'WETH',
+    'Wrapped ETH',
+  ),
 };

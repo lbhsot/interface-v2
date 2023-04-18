@@ -360,11 +360,7 @@ const AddLiquidity: React.FC<{
   };
 
   const connectWallet = () => {
-    if (ethereum && !isSupportedNetwork(ethereum)) {
-      addMaticToMetamask();
-    } else {
-      toggleWalletModal();
-    }
+    toggleWalletModal();
   };
 
   const handleDismissConfirmation = useCallback(() => {
@@ -380,7 +376,7 @@ const AddLiquidity: React.FC<{
     if (account) {
       return error ?? t('supply');
     } else if (ethereum && !isSupportedNetwork(ethereum)) {
-      return t('switchPolygon');
+      return t('switchChain');
     }
     return t('connectWallet');
   }, [account, ethereum, error, t]);

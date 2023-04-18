@@ -422,7 +422,7 @@ const WalletModal: React.FC<WalletModalProps> = ({
           <Box mt={3} mb={2} textAlign='center'>
             <small>
               {error instanceof UnsupportedChainIdError
-                ? t('connectPolygonNetwork')
+                ? t('connectCorrectNetwork')
                 : t('errorConnectRefresh')}
             </small>
           </Box>

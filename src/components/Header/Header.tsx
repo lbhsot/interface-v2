@@ -31,8 +31,7 @@ import 'components/styles/Header.scss';
 import { useTranslation } from 'react-i18next';
 import { getConfig } from 'config/index';
 import useDeviceWidth from 'hooks/useDeviceWidth';
-import { USDC, USDT } from 'constants/v3/addresses';
-import { ChainId } from 'sdk/uniswap';
+import { USDC } from 'constants/v3/addresses';
 
 const newTransactionsFirst = (a: TransactionDetails, b: TransactionDetails) => {
   return b.addedTime - a.addedTime;

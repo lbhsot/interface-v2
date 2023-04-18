@@ -12,6 +12,7 @@ export type ApolloChainMap = Readonly<
 export const clientV2: ApolloChainMap = {
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
+      // fixme
       uri: process.env.REACT_APP_GRAPH_V2_137_API_URL,
     }),
     cache: new InMemoryCache(),
@@ -22,17 +23,46 @@ export const clientV2: ApolloChainMap = {
     }),
     cache: new InMemoryCache(),
   }),
+  [ChainId.LINEA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      // fixme
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      // fixme
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
 };
 
 export const clientV3: ApolloChainMap = {
   [ChainId.ZK_ERA]: new ApolloClient({
     link: new HttpLink({
+      // fixme
       uri: process.env.REACT_APP_GRAPH_V3_137_API_URL,
     }),
     cache: new InMemoryCache(),
   }),
   [ChainId.ZK_ERA_TESTNET]: new ApolloClient({
     link: new HttpLink({
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.LINEA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      // fixme
+      uri: process.env.REACT_APP_GRAPH_V3_137_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      // fixme
       uri: process.env.REACT_APP_GRAPH_V3_137_API_URL,
     }),
     cache: new InMemoryCache(),
@@ -47,6 +77,18 @@ export const farmingClient: ApolloChainMap = {
     cache: new InMemoryCache(),
   }),
   [ChainId.ZK_ERA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.REACT_APP_V3_FARMING_API_137_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.LINEA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.REACT_APP_V3_FARMING_API_137_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_V3_FARMING_API_137_URL,
     }),
@@ -67,6 +109,18 @@ export const txClient: ApolloChainMap = {
     }),
     cache: new InMemoryCache(),
   }),
+  [ChainId.LINEA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
 };
 
 export const blockClient: ApolloChainMap = {
@@ -77,6 +131,18 @@ export const blockClient: ApolloChainMap = {
     cache: new InMemoryCache(),
   }),
   [ChainId.ZK_ERA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.LINEA_TESTNET]: new ApolloClient({
+    link: new HttpLink({
+      uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
+    }),
+    cache: new InMemoryCache(),
+  }),
+  [ChainId.SCROLL_ALPHA_TESTNET]: new ApolloClient({
     link: new HttpLink({
       uri: process.env.REACT_APP_GRAPH_V2_280_API_URL,
     }),
